@@ -1,4 +1,4 @@
- <footer class="py-4 bg-light mt-auto">
+ <footer class="py-4 bg-dark mt-auto">
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
                             <div class="text-muted">Copyright &copy; AVEM 2021</div>
@@ -21,3 +21,13 @@
         <script src="../js/datatables-simple-demo.js"></script>
     </body>
 </html>
+<style>
+    footer {
+        background-color: black;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 40px;
+        color: white;
+    }
+</style>
