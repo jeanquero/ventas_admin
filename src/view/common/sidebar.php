@@ -4,21 +4,44 @@
     <hr />
   </div>
   <ul class="list-unstyled components text-white">
-    <p>MENUS</p>
     <li>
       <a
         href="#homeSubmenu"
         data-toggle="collapse"
         aria-expanded="false"
         class="dropdown-toggle text-white"
-        >Dashboard</a
+        >Empresas</a
       >
       <ul class="collapse list-unstyled" id="homeSubmenu">
-        <li><a href="#">Dashboard1</a></li>
-        <li><a href="#">Dashboard2</a></li>
-        <li><a href="#">Dashboard3</a></li>
+        <li><a href="#" id="company_apa">Asociados Y colaboradores APA</a></li>
+        <li><a href="#">Empresas AVEM</a></li>
+        <li><a href="#" id="newCompany">Nuevo</a></li>
       </ul>
     </li>
-    <li><a href="#" class="text-white">Users</a></li>
+    <li>
+      <a
+        href="#homePersonas"
+        data-toggle="collapse"
+        aria-expanded="false"
+        class="dropdown-toggle text-white"
+        >Personas</a
+      >
+      <ul class="collapse list-unstyled" id="homePersonas">
+        <li><a href="#">Persona Natural</a></li>
+        <li><a href="#">Estrudiante</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
+<script>
+    $(document).ready(function(){
+      $('#company_apa').click(function() {
+    $("#contex").load("./src/view/empresas/contex.php");
+});
+$('#newCompany').click(function() {
+        alert("ss")
+    $("#contex").load("./src/view/empresas/form.php");
+});
+
+    });
+</script>
