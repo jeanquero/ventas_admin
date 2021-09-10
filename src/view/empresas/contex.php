@@ -92,9 +92,7 @@
                                 } else if ($key != "id_county") {
                                   echo $value;
                                   if ($key == "nombre_representante") {
-                                    echo '<a href="#">
-                    <span><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span>
-              </a>';
+                                    echo '<span><i class="fa fa-pencil-square-o representante_load"  id="'.$arr["id"].'_rep" aria-hidden="true"></i></span>';
                                   }
 
                                   if ($key == "workers") {
@@ -125,6 +123,9 @@
 
         <script>
           $(document).ready(function() {
+            $(".representante_load").click(function(e) {
+              window.location.href = "./src/view/representante/contex.php?company="+this.id.split("_")[0];
+            });
             $("#open_modal").click(function(e) {
               $("#update_company").hide();
               $("#create_company").show();

@@ -106,6 +106,31 @@ class Person {
 
     }
 
+    public function postCreateRel(PersonDTO $person,$id_company) {
+        //INSERT INTO `person` (`id`, `name`, `last_name`, `email`, `document_number`, `phone_number`, `id_document_type`,
+        // `position`, `column_9`, `company_name`, `id_person_type`, `total`)
+        // VALUES (NULL, 'ASD', 'ASD', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+        
+        $email = $person->getEmail();
+        $document = $person->getDocumentNumber();
+       
+        $findPerson = $this->getPersonDocumentNumber($document, $email);
+        if(count($findPerson) > 0){
+            $sql=" INSERT INTO company_person_rel (id_company, id_person) VALUES (".$id_company.", ".$findPerson["id"].")";
+            echo json_encode($sql);
+            try {
+                $this->db->executeInstruction($sql);
+                return ["error" => "false", "message"=>"Se registro exitoso!"];
+            }catch (Exception $e){
+                return ["error" => "true", "message"=>"error registrando persona", "sql"=> $sql];
+            }
+        }else{
+            return ["error" => "true", "message"=>"Error ya se encuentra registrado el Correo o Dni."];
+        }
+
+    }
+
+
 
     public function postUpdatePerson(PersonDTO $person, $id, $old_document, $old_email ) {
         //INSERT INTO `person` (`id`, `name`, `last_name`, `email`, `document_number`, `phone_number`, `id_document_type`,
@@ -159,13 +184,13 @@ class Person {
         return $consulta;
     }
 
-    public function getPerson($id) {
+    public function getPerson($id, $person_type) {
         $sql="";
         if($id == null) {
             $sql="SELECT p.name,p.last_name,p.document_number,p.email,p.phone_number,p.city, p.position,p.guest, p.company_name, p.id FROM person p where p.id_person_type = 2 OR p.id_person_type = 3";
         }
         else {
-            $sql="SELECT p.name,p.last_name,p.document_number,p.email,p.phone_number,p.city, p.position,p.guest, p.company_name, p.id FROM person p, company_person_rel rel where rel.id_company ='$id' and rel.id_person = p.id  and p.id_person_type = 3 ";
+            $sql="SELECT p.name,p.last_name,p.document_number,p.email,p.phone_number,p.city, p.position,p.guest, p.company_name, p.id FROM person p, company_person_rel rel where rel.id_company ='$id' and rel.id_person = p.id  and p.id_person_type = ".$person_type;
 
         }
         
@@ -185,25 +210,17 @@ class Person {
 
     }
 
-    public function deletePerson($id) {
-        
-            $sql="DELETE  FROM person p where p.id = '$id'";
-        
-        
-        
-        //echo $sql. "---";
-        $consulta = array();
+    public function deletePerson($id) {        
+        $sql="DELETE  FROM person p where p.id = '$id'";
+     
         try {
-            if (isset($this)) {
-                $consulta = $this->db->executeInstruction($sql);
-            }
+            
+        $this->db->executeInstruction($sql);
+            
         } catch (Exception $e) {
             print $e;
         }
-        if($consulta){
-            return $consulta;
-        }
-        return [];
+       
 
     }
 

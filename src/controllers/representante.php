@@ -29,6 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $id = $_POST["id"];
         if (empty($id)) {
         $save = $persona->postCreatePerson($personaDTO);
+        $persona->postCreateRel($personaDTO,$_POST['id_company']);
         } else {
             $save = $persona->postUpdatePerson($personaDTO,$id,$_POST["old_document"],$_POST["old_email"]);
             

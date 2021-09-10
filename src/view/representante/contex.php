@@ -11,7 +11,7 @@
 <?php require_once __DIR__ . "/../../repository/person.php";
 
 $person = new Person();
-$table = $person->getPerson(null,null);
+$table = $person->getPerson($_GET["company"],2);
  ?>
 
 
@@ -21,7 +21,7 @@ $table = $person->getPerson(null,null);
 <div class="content-wrapper">
 <div class="row">
     <div class="col">
-    <h4>Personas Naturales</h4>
+    <h4>Empresas</h4>
     </div>
     <div class="col">
       <button type="button" class="btn btn-warning float-right" data-toggle="modal" id="open_modal" data-target="#agregarEmpresa" data-whatever="@mdo">Agregar Empresa</button>
@@ -41,8 +41,6 @@ $table = $person->getPerson(null,null);
       <th scope="col">Celular</th>
       <th scope="col">Ciudad</th>
       <th scope="col">Cargo</th>
-      <th scope="col">Invitado</th>
-      <th scope="col">Empresa</th>
       <th scope="col">Accion</th>
     </tr>
   </thead>
@@ -60,16 +58,9 @@ $table = $person->getPerson(null,null);
            <td><?php 
             if ($key == "id") {
               echo ' <span><i class="fa fa-pencil-square-o editCompany" id="'.$value.'"  aria-hidden="true"></i></span> <span><i class="fa fa-trash deletePerson" id="'.$value.'_delete" aria-hidden="true"></i></span>';
-            }else if($key == "guest") {
-              if($value == "true") {
-                echo "Si";
-              } else {
-                echo "No";
-              }
-            }else {
-              echo $value; 
+            }else if($key != "guest" && $key != "company_name") {
+              echo $value ; 
             }
-            
             ?> </td><?php }?> 
 
 
@@ -89,6 +80,9 @@ $table = $person->getPerson(null,null);
 </div>
 
 <script>
+  if(people.length > 0) {
+    $("#open_modal").prop('disabled', true);
+  }
           $(document).ready(function() {
             $("#open_modal").click(function(e) {
               $("#update_company").hide();
@@ -114,7 +108,6 @@ $table = $person->getPerson(null,null);
               document.getElementById('email').value = update_comapy[0].email;
               document.getElementById('phone_number').value = update_comapy[0].phone_number;
               document.getElementById('city').value = update_comapy[0].city;
-              document.getElementById('part_empresa').value = update_comapy[0].company_name;
               
               document.getElementById('position').value = update_comapy[0].position;
               
@@ -122,15 +115,7 @@ $table = $person->getPerson(null,null);
               document.getElementById('old_document').value = update_comapy[0].document_number;
               document.getElementById('old_email').value = update_comapy[0].email;
               
-              if(update_comapy[0].guest == "true"){
-                document.getElementById('part_invitado').checked = true;
-                $("#part_empresa").show();
-      $("#part_empresa_label").show();
-              } else {
-                document.getElementById('part_invitado').checked = false;
-                $("#part_empresa").hide();
-                $("#part_empresa_label").hide();
-              }
+             
               
         
         

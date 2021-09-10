@@ -39,20 +39,13 @@
             <label for="position" class="col-form-label">Cargo*:</label>
             <input type="text" class="form-control" id="position"></input>
           </div>
-          <div class="form-group">
-            <input type="checkbox" value="true" id="part_invitado" name="part_invitado">
-            <label class="col-form-label" for="flexCheckDefault">
-              Invitado
-            </label>
-          </div>
-          <div class="form-group">
-            <label for="part_empresa" id="part_empresa_label" class="col-form-label">Empresa*</label>
-            <input type="text" class="form-control" id="part_empresa" name="part_empresa" required>
-          </div>
+          
 
           <input type="hidden" id="id" />
           <input type="hidden" id="old_document" />
           <input type="hidden" id="old_email" />
+          <input type="hidden" id="id_company"  value="<?php echo $_GET["company"] ?>"/>
+          
           
 
 
@@ -67,21 +60,9 @@
 </div>
 
 <script>
-  if (!document.getElementById('part_invitado').checked) {
-    $("#part_empresa").hide();
-    $("#part_empresa_label").hide();
-  }
+  
 
-  var partInvitadoCheck = document.getElementById('part_invitado');
-  partInvitadoCheck.addEventListener("change", (e) => {
-    if (!document.getElementById('part_invitado').checked) {
-      $("#part_empresa").hide();
-      $("#part_empresa_label").hide();
-    } else {
-      $("#part_empresa").show();
-      $("#part_empresa_label").show();
-    }
-  });
+  
 
   $("#update_company").hide();
   var myModal = new bootstrap.Modal(document.getElementById("agregarEmpresa"), {});
@@ -111,7 +92,7 @@
 
   const personCreate = async () => {
 
-    const response = await fetch('./../../controllers/person.php', {
+    const response = await fetch('./../../controllers/representante.php', {
       method: 'POST',
       body: new URLSearchParams({
         'name': document.getElementById('name').value,
@@ -120,14 +101,13 @@
         'email': document.getElementById('email').value,
         'phone_number': document.getElementById('phone_number').value,
         'city': document.getElementById('city').value,
-        'part_empresa': document.getElementById('part_empresa').value,
         'position':document.getElementById('position').value,
         'documentType': '2',
-        'id_person_type': '3',
-        'invitado': document.getElementById('part_invitado').checked,
+        'id_person_type': '2',
         'id': document.getElementById('id').value,
         'old_document': document.getElementById('old_document').value,
-        'old_email': document.getElementById('old_email').value
+        'old_email': document.getElementById('old_email').value,
+        'id_company': document.getElementById('id_company').value
 
 
       })
@@ -150,9 +130,9 @@
     } else {
       console.log('no hay error', resp);
 
-       location.reload(); 
+      // location.reload(); 
 
-       saveEmpresa[0].reset()
+       //saveEmpresa[0].reset()
       myModal.hide();
     }
 
