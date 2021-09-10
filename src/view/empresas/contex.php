@@ -1,6 +1,7 @@
 <?php require_once __DIR__ . "/../../repository/company.php";
 $company = new Company();
 $table = $company->getCompany();
+
 ?>
 
 <div class="content-wrapper">
@@ -31,7 +32,7 @@ $table = $company->getCompany();
           </tr>
         </thead>
   <tbody>
-      <tr>
+    <!--  <tr>
         <td> Prueba </td>
         <td> 551554221  </td>
         <td> Lima, Peru</td>
@@ -54,33 +55,35 @@ $table = $company->getCompany();
         <td> <span class="badge badge-success">Completo</span> </td>
         <td> Jean </td>
         <td> <span><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span> <span><i class="fa fa-trash" aria-hidden="true"></i></span>  </td>
-      </tr>
+      </tr>-->
      <?php if (count($table)>0) {?>
-      <tr>
-         <?php foreach ($table as $key => $value) {?> 
+      
+         <?php foreach ($table as $arr) { 
+           ?> <tr> <?php
+           foreach ($arr as $key => $value) {?> 
           
            <td><?php
             if ($key == "payment") {
                 if ($value == "0") {
-                    echo '<button type="button" class="btn btn-danger">incompleto</button>';
+                    echo '<span class="badge badge-danger">Incompleto</span> ';
                 } else {
-                    echo '<button type="button" class="btn btn-success">Completo</button>';
+                    echo '<span class="badge badge-success">Completo</span> ';
                 }
             } elseif ($key == "id") {
                 echo '<a href="#" id="'.$value.'" class="editCompany">
-                <img src="/../../img/edit.svg"/>
+                <span><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span> <span><i class="fa fa-trash" aria-hidden="true"></i></span> 
               </a>';
             } else {
                 echo $value;
                 if ($key == "nombre_representante") {
                     echo '<a href="#">
-                <img src="/../../img/edit.svg"/>
+                    <span><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span>
               </a>';
                 }
 
                 if ($key == "workers") {
                     echo '<a href="#">
-                <img src="/../../img/edit.svg"/>
+                    <span><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span>
               </a>';
                 }
             }
@@ -88,7 +91,7 @@ $table = $company->getCompany();
             ?> </td>
 
 
-<?php }?> </tr>
+<?php } ?> </tr> <?php }?> 
       <?php }?>
   </tbody>
 </table>
@@ -98,7 +101,7 @@ $table = $company->getCompany();
 <!-- Content here -->
 </div>
 
-<?php require_once __DIR__."./modal_new_empresa.php" ?>
+<?php require_once __DIR__."/modal_new_empresa.php" ?>
 
 
 </div>

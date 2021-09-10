@@ -27,7 +27,7 @@
         >Personas</a
       >
       <ul class="collapse list-unstyled" id="homePersonas">
-        <li><a href="#">Persona Natural</a></li>
+        <li><a href="#" id="person_re">Persona Natural</a></li>
         <li><a href="#">Estrudiante</a></li>
       </ul>
     </li>
@@ -41,6 +41,10 @@
 $('#newCompany').click(function() {
         alert("ss")
     $("#contex").load("./src/view/empresas/form.php");
+});
+$('#person_re').click(function() {
+        alert("ss")
+    $("#contex").load("./src/view/person/contex.php");
 });
 
     });

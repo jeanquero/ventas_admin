@@ -1,6 +1,8 @@
 <?php
-require __DIR__."/../../db/conexion.php";
-require __DIR__."/../dto/PersonDTO.php";
+//require_once __DIR__ ."/../db/conexion.php";
+//require __DIR__."/../dto/PersonDTO.php";
+require_once __DIR__ ."/../db/conexion.php";
+
 class Person {
 
     private $db;
@@ -114,6 +116,32 @@ class Person {
             print $e;
         }
         return $consulta;
+    }
+
+    public function getPerson($id) {
+        $sql="";
+        if($id == null) {
+            $sql="SELECT p.name,p.last_name,p.document_number,p.email,p.phone_number,p.city, p.position,p.guest, p.company_name, p.id FROM person p where p.id_person_type = 2 OR p.id_person_type = 3";
+        }
+        else {
+            $sql="SELECT p.name,p.last_name,p.document_number,p.email,p.phone_number,p.city, p.position,p.guest, p.company_name, p.id FROM person p, company_person_rel rel where rel.id_company ='$id' and rel.id_person = p.id  and p.id_person_type = 3 ";
+
+        }
+        
+        //echo $sql. "---";
+        $consulta = array();
+        try {
+            if (isset($this)) {
+                $consulta = $this->db->getDataSingle($sql);
+            }
+        } catch (Exception $e) {
+            print $e;
+        }
+        if($consulta){
+            return $consulta;
+        }
+        return [];
+
     }
 
 }

@@ -86,19 +86,18 @@ class Company {
     }
 
     public function getCompany() {
-        $sql = "Select c.name as name_company, c.document_number, c.address,c2.name as country, c.billing,c.activity, 
-        
+        $sql = "Select c.name as name_company, c.document_number, c.address,c2.name as country, c.billing,c.activity,
+
         (select count(*) from person tr, company_person_rel rel_tr
-        where tr.id= rel_tr.id_person AND rel_tr.id_company= c.id AND tr.id_person_type = 3) as workers,
- (select count(*) from payment pay WHERE pay.company_id = c.id) as  payment,re.name as nombre_representante, c.id
+         where tr.id= rel_tr.id_person AND rel_tr.id_company= c.id AND tr.id_person_type = 3) as workers,
+        (select count(*) from payment pay WHERE pay.company_id = c.id) as  payment,(select re.name from person re, company_person_rel rel_re
+                                                                                    where re.id= rel_re.id_person AND rel_re.id_company= c.id AND re.id_person_type = 2) as nombre_representante, c.id
  from company c
-     join company_person_rel rel  on rel.id_company = c.id
-     join person re on re.id = rel.id_person and re.id_person_type = 2
-     join country c2 on c.id_county = c2.id";
+          INNER JOIN country c2 on c.id_county = c2.id WHERE c.id_document_type = 2 OR c.id_document_type = 3";
         $consulta = array();
         try {
             if (isset($this)) {
-                $consulta = $this->db->getDataSingle($sql);
+                $consulta = $this->db->getData($sql);
             }
         } catch (Exception $e) {
             print $e;
