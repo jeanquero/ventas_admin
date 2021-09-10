@@ -13,7 +13,7 @@
         >Empresas</a
       >
       <ul class="collapse list-unstyled" id="homeSubmenu">
-        <li><a href="#" id="company_apa">Asociados Y colaboradores APA</a></li>
+        <li><a href="index.php" >Asociados Y colaboradores APA</a></li>
         <li><a href="#">Empresas AVEM</a></li>
         <li><a href="#" id="newCompany">Nuevo</a></li>
       </ul>
@@ -27,14 +27,14 @@
         >Personas</a
       >
       <ul class="collapse list-unstyled" id="homePersonas">
-        <li><a href="#" id="person_re">Persona Natural</a></li>
+        <li><a href="./src/view/person/contex.php" >Persona Natural</a></li>
         <li><a href="#">Estrudiante</a></li>
       </ul>
     </li>
   </ul>
 </nav>
 <script>
-    $(document).ready(function(){
+ /*   $(document).ready(function(){
       $('#company_apa').click(function() {
     $("#contex").load("./src/view/empresas/contex.php");
 });
@@ -47,5 +47,5 @@ $('#person_re').click(function() {
     $("#contex").load("./src/view/person/contex.php");
 });
 
-    });
+    });*/
 </script>

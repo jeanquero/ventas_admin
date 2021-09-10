@@ -12,19 +12,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $persona = new Person();
     try {
         $personaDTO = new PersonDTO();
-        $personaDTO->setName($_POST['nombres']);
-        $personaDTO->setLastName($_POST['apellidos']);
-        $personaDTO->setDocumentNumber($_POST['dni']);
+        $personaDTO->setName($_POST['name']);
+        $personaDTO->setLastName($_POST['last_name']);
+        $personaDTO->setDocumentNumber($_POST['document']);
         $personaDTO->setEmail($_POST['email']);
-        $personaDTO->setPhoneNumer($_POST['celular']);
+        $personaDTO->setPhoneNumer($_POST['phone_number']);
         $personaDTO->setCity($_POST['city']);
-        $personaDTO->setTotal($_POST['total']);
-        $personaDTO->setIdDocumentType(4);
-        $personaDTO->setIdPersonType(1);
-        $personaDTO->setCompanyName('');
-        $personaDTO->setInvitado('');
-
+        $personaDTO->setTotal(0);
+        $personaDTO->setIdDocumentType($_POST['documentType']);
+        $personaDTO->setIdPersonType($_POST["id_person_type"]);
+        $personaDTO->setCompanyName($_POST['part_empresa']);
+        $personaDTO->setInvitado($_POST['invitado']);
+        $personaDTO->setPosition($_POST['position']);
+        $id = $_POST["id"];
+        if (empty($id)) {
         $save = $persona->postCreatePerson($personaDTO);
+        } else {
+            $save = $persona->postUpdatePerson($personaDTO,$id,$_POST["old_document"],$_POST["old_email"]);
+            
+        }
         if($save && $save['error'] == 'false'){
             $error = '';
             $success = $save['message'];

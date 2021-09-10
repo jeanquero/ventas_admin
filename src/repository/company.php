@@ -91,7 +91,8 @@ class Company {
         (select count(*) from person tr, company_person_rel rel_tr
          where tr.id= rel_tr.id_person AND rel_tr.id_company= c.id AND tr.id_person_type = 3) as workers,
         (select count(*) from payment pay WHERE pay.company_id = c.id) as  payment,(select re.name from person re, company_person_rel rel_re
-                                                                                    where re.id= rel_re.id_person AND rel_re.id_company= c.id AND re.id_person_type = 2) as nombre_representante, c.id
+                                                                                    where re.id= rel_re.id_person AND rel_re.id_company= c.id AND re.id_person_type = 2) as nombre_representante,
+                                                                                     c.id, c.id_county
  from company c
           INNER JOIN country c2 on c.id_county = c2.id WHERE c.id_document_type = 2 OR c.id_document_type = 3";
         $consulta = array();

@@ -96,9 +96,50 @@ class Person {
             
             try {
                 $this->db->executeInstruction($sql);
-                return ["error" => "false", "message"=>"Se registro el estudiante exitosamente!"];
+                return ["error" => "false", "message"=>"Se registro exitoso!"];
             }catch (Exception $e){
-                return ["error" => "true", "message"=>$sql];
+                return ["error" => "true", "message"=>"error registrando persona", "sql"=> $sql];
+            }
+        }else{
+            return ["error" => "true", "message"=>"Error ya se encuentra registrado el Correo o Dni."];
+        }
+
+    }
+
+
+    public function postUpdatePerson(PersonDTO $person, $id, $old_document, $old_email ) {
+        //INSERT INTO `person` (`id`, `name`, `last_name`, `email`, `document_number`, `phone_number`, `id_document_type`,
+        // `position`, `column_9`, `company_name`, `id_person_type`, `total`)
+        // VALUES (NULL, 'ASD', 'ASD', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+        
+        $name=$person->getName();
+        $last_name=$person->getLastName();
+        $email = $person->getEmail();
+        $document = $person->getDocumentNumber();
+        $phone = $person->getPhoneNumer();
+        $city = $person->getCity();
+        $total = $person->getTotal();
+        $documentType = $person->getIdDocumentType();
+        $position = $person->getPosition();
+        $id_person_type = $person->getIdPersonType();
+        $company_name = $person->getCompanyName();
+        $invitado = $person->getInvitado();
+        $findPerson = [];
+        if($old_document !=$document || $old_email != $email) {
+            $findPerson = $this->getPersonDocumentNumber($document, $email);
+        } 
+        
+        if(count($findPerson) == 0){
+            $sql = "UPDATE person t SET t.last_name = '$last_name', t.email = '$email', 
+            t.name ='$name', t.document_number= '$document', t.phone_number='$phone', t.city='$city',
+             t.position='$position', t.company_name ='$company_name',t.guest='$invitado'  WHERE t.id = '$id'";
+
+            
+            try {
+                $this->db->executeInstruction($sql);
+                return ["error" => "false", "message"=>"Se registro exitoso!"];
+            }catch (Exception $e){
+                return ["error" => "true", "message"=>"error registrando persona", "sql"=> $sql];
             }
         }else{
             return ["error" => "true", "message"=>"Error ya se encuentra registrado el Correo o Dni."];
@@ -132,7 +173,29 @@ class Person {
         $consulta = array();
         try {
             if (isset($this)) {
-                $consulta = $this->db->getDataSingle($sql);
+                $consulta = $this->db->getData($sql);
+            }
+        } catch (Exception $e) {
+            print $e;
+        }
+        if($consulta){
+            return $consulta;
+        }
+        return [];
+
+    }
+
+    public function deletePerson($id) {
+        
+            $sql="DELETE  FROM person p where p.id = '$id'";
+        
+        
+        
+        //echo $sql. "---";
+        $consulta = array();
+        try {
+            if (isset($this)) {
+                $consulta = $this->db->executeInstruction($sql);
             }
         } catch (Exception $e) {
             print $e;

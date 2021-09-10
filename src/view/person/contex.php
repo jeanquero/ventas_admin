@@ -1,4 +1,13 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<link href="./../../css/style2.css" rel="stylesheet" />
+<?php require_once __DIR__."/../common/header2.php" ?>
+<body>
+<div class="wrapper">
+    <?php require_once __DIR__."/../common/sidebar.php" ?>
+    <div class="content">
+    <?php require_once __DIR__."/../common/navbar.php" ?>
+        <div class="content-wrapper" id="contex">
 <?php require_once __DIR__ . "/../../repository/person.php";
 
 $person = new Person();
@@ -15,7 +24,7 @@ $table = $person->getPerson(null);
     <h4>Empresas</h4>
     </div>
     <div class="col">
-      <button type="button" class="btn btn-warning float-right" data-toggle="modal" data-target="#agregarEmpresa" data-whatever="@mdo">Agregar Empresa</button>
+      <button type="button" class="btn btn-warning float-right" data-toggle="modal" id="open_modal" data-target="#agregarEmpresa" data-whatever="@mdo">Agregar Empresa</button>
     </div>
   </div>
 <div class="row mt-4">
@@ -39,24 +48,29 @@ $table = $person->getPerson(null);
   </thead>
   <tbody>
      <?php if(count($table)>0) {?>
-      <tr>
-         <?php foreach($table as $key => $value){?> 
+      <script>
+                        var people = [];
+                      </script>
+      <?php foreach ($table as $arr) { 
+           ?>   <script>
+           people.push(<?php echo json_encode($arr) ?>);
+         </script>   <tr>
+         <?php foreach($arr as $key => $value){?> 
           
            <td><?php 
             if ($key == "id") {
-              echo '<a href="#" id="'.$value.'" class="editCompany">
-              <span><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span> <span><i class="fa fa-trash" aria-hidden="true"></i></span> 
-
-              </a>';
+              echo ' <span><i class="fa fa-pencil-square-o editCompany" id="'.$value.'"  aria-hidden="true"></i></span> <span><i class="fa fa-trash" aria-hidden="true"></i></span>';
+            }else if($key == "guest") {
+              if($value == "true") {
+                echo "Si";
+              } else {
+                echo "No";
+              }
             }else {
-              
-              echo $value;
-              
-
-              
+              echo $value; 
             }
             
-            ?> </td>
+            ?> </td><?php }?> 
 
 
 <?php }?> </tr>
@@ -69,10 +83,74 @@ $table = $person->getPerson(null);
 <!-- Content here -->
 </div>
 
+<?php require_once __DIR__."/modal_new_person.php" ?>
 
 
 </div>
 
 <script>
+          $(document).ready(function() {
+            $("#open_modal").click(function(e) {
+              $("#update_company").hide();
+              $("#create_company").show();
+              saveEmpresa[0].reset()
+              document.getElementById('id').value = null;
+              document.getElementById('old_document').value = null;
+              document.getElementById('old_email').value = null;
+            });
+            $('.editCompany').click(function(e) {
 
+              console.log(people.filter(d => d.id == this.id));
+              var update_comapy = people.filter(d => d.id == this.id);
+
+              document.getElementById('name').value = update_comapy[0].name;
+              document.getElementById('last_name').value = update_comapy[0].last_name;
+              document.getElementById('document').value = update_comapy[0].document_number;
+              document.getElementById('email').value = update_comapy[0].email;
+              document.getElementById('phone_number').value = update_comapy[0].phone_number;
+              document.getElementById('city').value = update_comapy[0].city;
+              document.getElementById('part_empresa').value = update_comapy[0].company_name;
+              
+              document.getElementById('position').value = update_comapy[0].position;
+              
+              document.getElementById('id').value = update_comapy[0].id;
+              document.getElementById('old_document').value = update_comapy[0].document_number;
+              document.getElementById('old_email').value = update_comapy[0].email;
+              
+              if(update_comapy[0].guest == "true"){
+                document.getElementById('part_invitado').checked = true;
+                $("#part_empresa").show();
+      $("#part_empresa_label").show();
+              } else {
+                document.getElementById('part_invitado').checked = false;
+                $("#part_empresa").hide();
+                $("#part_empresa_label").hide();
+              }
+              
+        
+        
+              var myModal = new bootstrap.Modal(document.getElementById("agregarEmpresa"), {});
+              myModal.show();
+              $("#update_company").show();
+              $("#create_company").hide();
+
+
+            });
+
+
+          });
+        </script>
+
+</div>
+    </div>
+</div>
+</body>
+<script>
+    $(document).ready(function(){
+        $("#sidebarCollapse").on('click', function(){
+        $("#sidebar").toggleClass('active');
+        });
+    });
 </script>
+
+</html>

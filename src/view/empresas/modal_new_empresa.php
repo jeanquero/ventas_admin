@@ -9,7 +9,7 @@ $paises = $pais->getData();
       <div class="modal-header bg-light">
         <h5 class="modal-title" id="create_company">Agregar empresa</h5>
         <h5 class="modal-title" id="update_company">Editar empresa</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button"  class="close close_modal" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -45,6 +45,9 @@ $paises = $pais->getData();
               <input type="text" class="form-control" id="billing"></input>
             </div>
           </div>
+          <input type="hidden" id="id" />
+          <input type="hidden" id="old_document" />
+        
           <div class="form-group">
             <label for="participants_number" class="col-form-label">Cantidad de participantes*:</label>
             <input type="number" class="form-control" id="participants_number" require></input>
@@ -53,15 +56,23 @@ $paises = $pais->getData();
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-warning" id="saveCompany">Guardar</button>
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-danger close_modal" data-dismiss="modal">Cancelar</button>
       </div>
     </div>
   </div>
 </div>
 
 <script>
+
+  $("#update_company").hide();
   var myModal = new bootstrap.Modal(document.getElementById("agregarEmpresa"), {});
   var saveEmpresa = $("#form-empresa");
+  $(".close_modal").click(function(e) {
+   // alert("s")
+    //$("#agregarEmpresa").hide();
+    myModal.hide();
+    myModal.hide();
+      });
   saveEmpresa.validate();
   let guardar = document.getElementById('saveCompany');
     guardar.addEventListener("click", () => {
@@ -92,6 +103,8 @@ const response = await fetch('src/controllers/company.php', {
         'country': document.getElementById('country').value,
         'billing': document.getElementById('billing').value,
         'documentType': '2',
+        'id': document.getElementById('id').value,
+        'old_document': document.getElementById('old_document').value 
         
       
     })
