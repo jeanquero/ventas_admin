@@ -1,6 +1,6 @@
 <nav id="sidebar" class="">
   <div class="sidebar-header navbar-light bg-dark border-bottom title-header">
-    <h3 class="ml-2 p-2">AVEM</h3>
+    <h3 class="ml-2 p-2"><a href="../../../index.php" class="text-white">AVEM</a></h3>
   </div>
   <ul class="list-unstyled components">
     <li>
