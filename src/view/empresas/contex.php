@@ -6,7 +6,7 @@
 <body>
   <div class="wrapper">
     <?php require_once __DIR__ . "/../common/sidebar.php" ?>
-    <div class="content">
+    <div class="content w-100">
       <?php require_once __DIR__ . "/../common/navbar.php" ?>
       <div class="content-wrapper" id="contex">
 

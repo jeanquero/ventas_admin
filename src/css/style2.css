@@ -56,6 +56,7 @@ a:focus {
     transition: all 0.3s
 }
 
+
 #sidebar.active {
     margin-left: -250px
 }
@@ -139,7 +140,7 @@ a.download:hover {
 }
 
 .content-wrapper {
-    padding: 15px
+    padding: 15px;
 }
 
 @media(maz-width:768px) {
@@ -154,4 +155,8 @@ a.download:hover {
     #sidebarCollapse span {
         display: none
     }
+}
+
+a:link {
+    text-decoration: none !important;
 }

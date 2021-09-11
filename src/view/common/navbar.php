@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand navbar-dark bg-dark">
   <button type="button" id="sidebarCollapse" class="btn btn-dark">
     <i class="fa fa-align-justify"></i>
   </button>
@@ -14,7 +14,7 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav ml-auto">
+   <!-- <ul class="navbar-nav ml-auto">
       <li class="nav-item active">
         <a class="nav-link" href="#"
           >Home <span class="sr-only">(current)</span></a
@@ -23,6 +23,6 @@
       <li class="nav-item"><a class="nav-link" href="#">Features</a></li>
       <li class="nav-item"><a class="nav-link" href="#">Pricing</a></li>
       <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-    </ul>
+    </ul>-->
   </div>
 </nav>
