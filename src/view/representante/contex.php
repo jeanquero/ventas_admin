@@ -55,13 +55,13 @@ $table = $person->getPerson($_GET["company"],2);
          </script>   <tr>
          <?php foreach($arr as $key => $value){?> 
           
-           <td><?php 
+           <?php 
             if ($key == "id") {
-              echo ' <span><i class="fa fa-pencil-square-o editCompany" id="'.$value.'"  aria-hidden="true"></i></span> <span><i class="fa fa-trash deletePerson" id="'.$value.'_delete" aria-hidden="true"></i></span>';
+              echo ' <td><span><i class="fa fa-pencil-square-o editCompany" id="'.$value.'"  aria-hidden="true"></i></span> <span><i class="fa fa-trash deletePerson" id="'.$value.'_delete" aria-hidden="true"></i></span> </td>';
             }else if($key != "guest" && $key != "company_name") {
-              echo $value ; 
+              echo "<td>".$value."</td>" ; 
             }
-            ?> </td><?php }?> 
+            ?> <?php }?> 
 
 
 <?php }?> </tr>

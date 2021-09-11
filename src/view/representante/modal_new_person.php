@@ -130,9 +130,9 @@
     } else {
       console.log('no hay error', resp);
 
-      // location.reload(); 
+       location.reload(); 
 
-       //saveEmpresa[0].reset()
+       saveEmpresa[0].reset()
       myModal.hide();
     }
 
