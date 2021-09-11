@@ -28,7 +28,7 @@
       >
       <ul class="collapse list-unstyled" id="homePersonas">
         <li><a href="./src/view/person/contex.php" >Persona Natural</a></li>
-        <li><a href="#">Estrudiante</a></li>
+        <li><a href="./src/view/estudiante/contex.php">Estrudiante</a></li>
       </ul>
     </li>
   </ul>

@@ -90,6 +90,7 @@ class Person {
         $company_name = $person->getCompanyName();
         $invitado = $person->getInvitado();
         $findPerson = $this->getPersonDocumentNumber($document, $email);
+       // echo json_encode($findPerson );
         if(count($findPerson) == 0){
             $sql="INSERT INTO person (name,last_name,email,document_number,phone_number,city,total, id_document_type, position,id_person_type,company_name,guest) 
                         VALUES('$name','$last_name','$email','$document','$phone','$city','$total','$documentType','$position','$id_person_type','$company_name','$invitado')";
@@ -115,9 +116,11 @@ class Person {
         $document = $person->getDocumentNumber();
        
         $findPerson = $this->getPersonDocumentNumber($document, $email);
+      
         if(count($findPerson) > 0){
+          //  echo json_encode($findPerson );
             $sql=" INSERT INTO company_person_rel (id_company, id_person) VALUES (".$id_company.", ".$findPerson["id"].")";
-            echo json_encode($sql);
+          //  echo json_encode($sql);
             try {
                 $this->db->executeInstruction($sql);
                 return ["error" => "false", "message"=>"Se registro exitoso!"];
@@ -193,6 +196,27 @@ class Person {
             $sql="SELECT p.name,p.last_name,p.document_number,p.email,p.phone_number,p.city, p.position,p.guest, p.company_name, p.id FROM person p, company_person_rel rel where rel.id_company ='$id' and rel.id_person = p.id  and p.id_person_type = ".$person_type;
 
         }
+        
+        //echo $sql. "---";
+        $consulta = array();
+        try {
+            if (isset($this)) {
+                $consulta = $this->db->getData($sql);
+            }
+        } catch (Exception $e) {
+            print $e;
+        }
+        if($consulta){
+            return $consulta;
+        }
+        return [];
+
+    }
+
+    public function getEstudiante() {
+        
+        $sql="SELECT p.name,p.last_name,p.document_number,p.email,p.phone_number,p.city, p.position,p.guest, p.company_name, p.id FROM person p where p.id_person_type = 1";
+        
         
         //echo $sql. "---";
         $consulta = array();

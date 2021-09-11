@@ -118,7 +118,7 @@ if (resp && resp['error'] == "true") {
     myModal.hide();
     Swal.fire({
         title: 'Error!',
-        text: resp['message'],
+        text: resp['error'],
         icon: 'error',
         showConfirmButton: false,
         timer: 2500

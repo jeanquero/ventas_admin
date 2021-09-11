@@ -2,8 +2,8 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header bg-light">
-        <h5 class="modal-title" id="create_company">Agregar Persona Natural</h5>
-        <h5 class="modal-title" id="update_company">Editar Persona Natural</h5>
+        <h5 class="modal-title" id="create_company">Agregar Estudiante</h5>
+        <h5 class="modal-title" id="update_company">Editar Estudiante</h5>
         <button type="button" class="close close_modal" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -39,16 +39,7 @@
             <label for="position" class="col-form-label">Cargo*:</label>
             <input type="text" class="form-control" id="position"></input>
           </div>
-          <div class="form-group">
-            <input type="checkbox" value="true" id="part_invitado" name="part_invitado">
-            <label class="col-form-label" for="flexCheckDefault">
-              Invitado
-            </label>
-          </div>
-          <div class="form-group">
-            <label for="part_empresa" id="part_empresa_label" class="col-form-label">Empresa*</label>
-            <input type="text" class="form-control" id="part_empresa" name="part_empresa" required>
-          </div>
+          
 
           <input type="hidden" id="id" />
           <input type="hidden" id="old_document" />
@@ -67,21 +58,9 @@
 </div>
 
 <script>
-  if (!document.getElementById('part_invitado').checked) {
-    $("#part_empresa").hide();
-    $("#part_empresa_label").hide();
-  }
+ 
 
-  var partInvitadoCheck = document.getElementById('part_invitado');
-  partInvitadoCheck.addEventListener("change", (e) => {
-    if (!document.getElementById('part_invitado').checked) {
-      $("#part_empresa").hide();
-      $("#part_empresa_label").hide();
-    } else {
-      $("#part_empresa").show();
-      $("#part_empresa_label").show();
-    }
-  });
+  
 
   $("#update_company").hide();
   var myModal = new bootstrap.Modal(document.getElementById("agregarEmpresa"), {});
@@ -99,7 +78,7 @@
     if (!saveEmpresa.valid()) {
       Swal.fire({
         title: 'Error!',
-        text: 'Error en los datos de la empresa',
+        text: 'Error en los datos del estudiante',
         icon: 'error',
         showConfirmButton: false,
         timer: 2500
@@ -120,11 +99,9 @@
         'email': document.getElementById('email').value,
         'phone_number': document.getElementById('phone_number').value,
         'city': document.getElementById('city').value,
-        'part_empresa': document.getElementById('part_empresa').value,
         'position':document.getElementById('position').value,
-        'documentType': '2',
-        'id_person_type': '3',
-        'invitado': document.getElementById('part_invitado').checked,
+        'documentType': '4',
+        'id_person_type': '1',
         'id': document.getElementById('id').value,
         'old_document': document.getElementById('old_document').value,
         'old_email': document.getElementById('old_email').value

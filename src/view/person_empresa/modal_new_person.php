@@ -53,7 +53,8 @@
           <input type="hidden" id="id" />
           <input type="hidden" id="old_document" />
           <input type="hidden" id="old_email" />
-          
+          <input type="hidden" id="id_company"  value="<?php echo $_GET["company"] ?>"/>
+
 
 
         </form>
@@ -111,7 +112,7 @@
 
   const personCreate = async () => {
 
-    const response = await fetch('./../../controllers/person.php', {
+    const response = await fetch('./../../controllers/person_empresa.php', {
       method: 'POST',
       body: new URLSearchParams({
         'name': document.getElementById('name').value,
@@ -127,7 +128,9 @@
         'invitado': document.getElementById('part_invitado').checked,
         'id': document.getElementById('id').value,
         'old_document': document.getElementById('old_document').value,
-        'old_email': document.getElementById('old_email').value
+        'old_email': document.getElementById('old_email').value,
+        'id_company': document.getElementById('id_company').value
+
 
 
       })

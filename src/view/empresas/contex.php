@@ -88,17 +88,15 @@
                                     echo '<span class="badge badge-success">Completo</span> ';
                                   }
                                 } elseif ($key == "id") {
-                                  echo ' <span><i class="fa fa-pencil-square-o editCompany" id="' . $value . '"  aria-hidden="true"></i></span> <span><i class="fa fa-trash" aria-hidden="true"></i></span>';
+                                  echo ' <span><i class="fa fa-pencil-square-o editCompany" id="' . $value . '"  aria-hidden="true"></i></span> <span><i class="fa fa-trash eliminar_empresa" id="' . $value . '_delete_company" aria-hidden="true"></i></span>';
                                 } else if ($key != "id_county") {
                                   echo $value;
                                   if ($key == "nombre_representante") {
-                                    echo '<span><i class="fa fa-pencil-square-o representante_load"  id="'.$arr["id"].'_rep" aria-hidden="true"></i></span>';
+                                    echo '<span><i class="fa fa-pencil-square-o representante_load"  id="' . $arr["id"] . '_rep" aria-hidden="true"></i></span>';
                                   }
 
                                   if ($key == "workers") {
-                                    echo '<a href="#">
-                    <span><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span>
-              </a>';
+                                    echo ' <span><i class="fa fa-pencil-square-o workers_load" id="' . $arr["id"] . '_work aria-hidden="true"></i></span>';
                                   }
                                 }
 
@@ -124,8 +122,18 @@
         <script>
           $(document).ready(function() {
             $(".representante_load").click(function(e) {
-              window.location.href = "./src/view/representante/contex.php?company="+this.id.split("_")[0];
+              window.location.href = "./src/view/representante/contex.php?company=" + this.id.split("_")[0];
             });
+
+            $(".workers_load").click(function(e) {
+              window.location.href = "./src/view/person_empresa/contex.php?company=" + this.id.split("_")[0];
+            });
+
+            $('.eliminar_empresa').click(function(e) {
+              companyDelete(this.id.split("_")[0], 'delete')
+
+            })
+
             $("#open_modal").click(function(e) {
               $("#update_company").hide();
               $("#create_company").show();
@@ -157,6 +165,46 @@
 
 
           });
+
+          const companyDelete = async (id, action) => {
+
+            const response = await fetch('src/controllers/company.php', {
+              method: 'POST',
+              body: new URLSearchParams({
+
+                'id': id.split("_")[0],
+                'action': action
+
+
+
+              })
+
+            });
+
+            console.log('no hay error', response);
+            const resp = await response.json();
+            console.log('no hay error', resp);
+            if (resp && resp['success'] == "false") {
+              myModal.hide();
+              Swal.fire({
+                title: 'Error!',
+                text: resp['message'],
+                icon: 'error',
+                showConfirmButton: false,
+                timer: 2500
+              });
+              console.error('Error', resp);
+            } else {
+              console.log('no hay error', resp);
+
+              location.reload();
+
+              saveEmpresa[0].reset()
+              myModal.hide();
+            }
+
+
+          }
         </script>
 
       </div>
