@@ -7,6 +7,7 @@ class MysqlDB
     private $db ="ventas4";
 
 
+
     private $connection;
 
     public function connect()

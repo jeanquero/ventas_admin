@@ -40,7 +40,7 @@
   </div>
   <ul class="list-unstyled">
         <li><a href="./../pago_por_empresas/contex.php" class="text-info">Empresas</a></li>
-        <li><a href="./../estudiante/contex.php" class="text-info">Personas</a></li>
+        <li><a href="./../pago_por_personas/contex.php" class="text-info">Personas</a></li>
       </ul>
 </nav>
 <script>

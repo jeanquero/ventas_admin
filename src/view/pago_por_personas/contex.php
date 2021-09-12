@@ -12,7 +12,7 @@
 
         <?php require_once __DIR__ . "/../../repository/company.php";
         $company = new Company();
-        $table = $company->getCompanyPago();
+        $table = $company->getPeoplePago();
 
         ?>
 
@@ -22,7 +22,7 @@
               <h4>Pagos</h4>
             </div>
             <div class="col">
-            <!--  <button type="button" class="btn btn-warning float-right" disabled data-toggle="modal" id="open_modal" data-target="#agregarEmpresa" data-whatever="@mdo">Agregar Pago</button>-->
+             <!-- <button type="button" class="btn btn-warning float-right" data-toggle="modal" id="open_modal" data-target="#agregarEmpresa" data-whatever="@mdo">Agregar Pago</button>-->
             </div>
           </div>
           <div class="row mt-4">
@@ -31,11 +31,12 @@
                 <table class="table p-4">
                   <thead class="thead-light">
                     <tr>
-                      <th scope="col">Empresa</th>
-                      <th scope="col">RUC/Equivalente</th>
-                      <th scope="col">Contacto Contable</th>
-                      <th scope="col">Tipo</th>
-                      <th scope="col">Participante</th>
+                      <th scope="col">Persona</th>
+                      <th scope="col">Nombre</th>
+                      <th scope="col">Apellidos</th>
+                      <th scope="col">Doc. de identidad</th>
+                      <th scope="col">Correo</th>
+                      <th scope="col">Centro de Estudio</th>
                       <th scope="col">Total</th>
                       <th scope="col">Pago</th>
                       <th scope="col">Entidad Bancaria</th>
@@ -136,7 +137,7 @@
             });
 
             $('.eliminar_empresa').click(function(e) {
-             // companyDelete(this.id.split("_")[0], 'delete')
+              companyDelete(this.id.split("_")[0], 'delete')
 
             })
 
@@ -162,7 +163,7 @@
               document.getElementById('id').value = update_comapy[0].id;
               document.getElementById('old_document').value = update_comapy[0].document_number;
               var myModal = new bootstrap.Modal(document.getElementById("agregarEmpresa"), {});
-              //myModal.show();
+              myModal.show();
               $("#update_company").show();
               $("#create_company").hide();
 

@@ -18,6 +18,7 @@ class ExcelExport {
     private $company;
     private $table;
     private $dataPerson;
+    private $estudiande;
     private $person;
     private $fila;
     /**
@@ -115,6 +116,83 @@ class ExcelExport {
 
     }
 
+    /**
+     *
+     * Método para exportar un archivo excel de
+     * personas.
+     *
+     * @author <Jose>
+     * @acces public
+     */
+    public function exportEstudiante(){
+        $this->sheet->setTitle("Estudiante");
+        $header = ["Nombres", "Apellidos", "Doc. Identidad", "Correo", "Celular","Ciudad","Centro de estudios","Código de estudiante"];
+        $this->header($header);
+       
+        foreach ($this->person->getEstudiante() as $value){
+            $this->sheet->setCellValueByColumnAndRow(1,$this->fila,$value['name'])->getColumnDimension('A')->getAutoSize();
+            $this->sheet->setCellValueByColumnAndRow(2,$this->fila,$value['last_name'])->getColumnDimension('B')->getAutoSize();
+            $this->sheet->setCellValueByColumnAndRow(3,$this->fila,$value['document_number'])->getColumnDimension('C')->getAutoSize();
+            $this->sheet->setCellValueByColumnAndRow(4,$this->fila, $value['email'])->getColumnDimension('D')->getAutoSize();
+            $this->sheet->setCellValueByColumnAndRow(5,$this->fila,$value['phone_number'])->getColumnDimension('E')->getAutoSize();
+            $this->sheet->setCellValueByColumnAndRow(6,$this->fila,$value['city'])->getColumnDimension('F')->getAutoSize();
+            $this->sheet->setCellValueByColumnAndRow(7,$this->fila, $value['centro'])->getColumnDimension('G')->getAutoSize();
+            $this->sheet->setCellValueByColumnAndRow(9,$this->fila,$value['codigo_estudiante,'])->getColumnDimension('H')->getAutoSize();
+            $this->fila++;
+        }
+        header('Content-Disposition: attachment;filename='.'personas'.$this->format.'');
+        header('Cache-Control: max-age=0');
+        try {
+            $writer = IOFactory::createWriter($this->spreadsheet, 'Xlsx');
+            $writer->save('php://output');
+            exit;
+        } catch (\PhpOffice\PhpSpreadsheet\Writer\Exception $e) {
+            $this->log->Logger($e->getMessage(), 'error');
+            exit;
+        }
+
+    }
+
+    /**
+     *
+     * Método para exportar un archivo excel de
+     * empresas.
+     *
+     * @author <Jose>
+     * @acces public
+     */
+    public function exportCompanyAVEM(){
+        $this->sheet->setTitle("Empresas");
+        $header = ["Empresa", "RUC/Equivalente", "Dirección", "Pais", "Rubro","Contacto Contable","Participantes","Estado","Nombre del Registrador"];
+        $this->header($header);
+        foreach ($this->company->getCompanyAVEN() as $value){
+            $estado = $value['payment'] == 0 ? 'Incompleto' : 'Completo';
+            $this->sheet->setCellValueByColumnAndRow(1,$this->fila,$value['name_company'])->getColumnDimension('A')->setAutoSize(true);
+            $this->sheet->setCellValueByColumnAndRow(2,$this->fila,$value['document_number'])->getColumnDimension('B')->setAutoSize(true);
+            $this->sheet->setCellValueByColumnAndRow(3,$this->fila,$value['address'])->getColumnDimension('C')->setAutoSize(true);
+            $this->sheet->setCellValueByColumnAndRow(4,$this->fila, $value['country'])->getColumnDimension('D')->setAutoSize(true);
+            $this->sheet->setCellValueByColumnAndRow(5,$this->fila,$value['activity'])->getColumnDimension('E')->setAutoSize(true);
+            $this->sheet->setCellValueByColumnAndRow(6,$this->fila,$value['billing'])->getColumnDimension('F')->setAutoSize(true);
+            $this->sheet->setCellValueByColumnAndRow(7,$this->fila, $value['workers'])->getColumnDimension('G')->setAutoSize(true);
+            $this->sheet->setCellValueByColumnAndRow(8,$this->fila,$estado)->getColumnDimension('H')->setAutoSize(true);
+            $this->sheet->setCellValueByColumnAndRow(9,$this->fila,$value['nombre_representante'])->getColumnDimension('I')->setAutoSize(true);
+            $this->fila++;
+        }
+
+        header('Content-Disposition: attachment;filename='.'empresas'.$this->format.'');
+        header('Cache-Control: max-age=0');
+        try {
+            $writer = IOFactory::createWriter($this->spreadsheet, 'Xlsx');
+            $writer->save('php://output');
+            exit;
+        } catch (\PhpOffice\PhpSpreadsheet\Writer\Exception $e) {
+            $this->log->Logger($e->getMessage(), 'error');
+            exit;
+        }
+
+    }
+
+    
     public function header(array $header){
         $this->sheet->fromArray($header);
     }

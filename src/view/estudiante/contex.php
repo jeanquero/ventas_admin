@@ -1,3 +1,17 @@
+<?php
+require_once __DIR__ . "/../../conf/monolog.php";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    require_once __DIR__ . "/../../controllers/exel_export.php";
+    $excel = new ExcelExport();
+    try {
+        $excel->exportEstudiante();
+    } catch (Exception $e) {
+        $log = new Monolog();
+        $log->Logger($e->getMessage(), 'error');
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <link href="./../../css/style2.css" rel="stylesheet" />
@@ -25,6 +39,9 @@ $table = $person->getEstudiante();
     </div>
     <div class="col">
       <button type="button" class="btn btn-warning float-right" data-toggle="modal" id="open_modal" data-target="#agregarEmpresa" data-whatever="@mdo">Agregar Estudiante</button>
+      <form method="post">
+            <button type="submit" class="btn btn-success float-right mr-4 mt-1">Exportar excel</button>
+        </form>
     </div>
   </div>
 <div class="row mt-4">

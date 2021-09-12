@@ -160,6 +160,32 @@ class Company {
         return [];
     }
 
+    public function getPeoplePago() {
+       
+
+          $sql="SELECT dt.name as document, p.name,p.last_name,p.document_number,p.email, p.centro,p.total,
+          (select count(*) from payment pay WHERE pay.person_id = p.id) as  type_payment,
+          (select pay2.bank from payment pay2 WHERE pay2.person_id = p.id) as bank,
+          (select pay3.reference from payment pay3 WHERE pay3.person_id = p.id) reference,
+          (select pay4.voucher from payment pay4 WHERE pay4.person_id = p.id) as voucher,
+          (select count(*) from payment pay WHERE pay.person_id = p.id) as  payment,
+           p.id 
+          FROM person p
+          JOIN document_type dt ON dt.id = p.id_document_type 
+           where p.id_person_type = 1";
+        $consulta = array();
+        try {
+            if (isset($this)) {
+                $consulta = $this->db->getData($sql);
+            }
+        } catch (Exception $e) {
+            print $e;
+        }
+        if($consulta){
+            return $consulta;
+        }
+        return [];
+    }
     public function getPrecio() {
         $sql = "SELECT d.name, t.precio_individual, t.precio_corparativo, t.divisa, t.estado, t.id, t.id_document_type
         FROM pagos t join document_type d on d.id = t.id_document_type";
