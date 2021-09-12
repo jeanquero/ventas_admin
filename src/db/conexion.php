@@ -6,6 +6,7 @@ class MysqlDB
     private $pass ="root";
     private $db ="ventas4";
 
+
     private $connection;
 
     public function connect()

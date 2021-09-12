@@ -19,10 +19,10 @@
         <div class="content-wrapper">
           <div class="row">
             <div class="col">
-              <h4>Empresas</h4>
+              <h4>Pagos</h4>
             </div>
             <div class="col">
-              <button type="button" class="btn btn-warning float-right" data-toggle="modal" id="open_modal" data-target="#agregarEmpresa" data-whatever="@mdo">Agregar Empresa</button>
+              <button type="button" class="btn btn-warning float-right" data-toggle="modal" id="open_modal" data-target="#agregarEmpresa" data-whatever="@mdo">Agregar Pago</button>
             </div>
           </div>
           <div class="row mt-4">

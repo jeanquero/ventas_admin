@@ -21,10 +21,10 @@ $table = $person->getEstudiante();
 <div class="content-wrapper">
 <div class="row">
     <div class="col">
-    <h4>Personas Naturales</h4>
+    <h4>Estudiante</h4>
     </div>
     <div class="col">
-      <button type="button" class="btn btn-warning float-right" data-toggle="modal" id="open_modal" data-target="#agregarEmpresa" data-whatever="@mdo">Agregar Empresa</button>
+      <button type="button" class="btn btn-warning float-right" data-toggle="modal" id="open_modal" data-target="#agregarEmpresa" data-whatever="@mdo">Agregar Estudiante</button>
     </div>
   </div>
 <div class="row mt-4">

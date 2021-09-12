@@ -6,8 +6,8 @@ $document_type = $company->getDocumentType();
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header bg-light">
-        <h5 class="modal-title" id="create_company">Agregar empresa</h5>
-        <h5 class="modal-title" id="update_company">Editar empresa</h5>
+        <h5 class="modal-title" id="create_company">Agregar Precio</h5>
+        <h5 class="modal-title" id="update_company">Editar Precio</h5>
         <button type="button"  class="close close_modal" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>

@@ -25,7 +25,7 @@
               <h4>Personas Naturales</h4>
             </div>
             <div class="col">
-              <button type="button" class="btn btn-warning float-right" data-toggle="modal" id="open_modal" data-target="#agregarEmpresa" data-whatever="@mdo">Agregar Empresa</button>
+              <button type="button" class="btn btn-warning float-right" data-toggle="modal" id="open_modal" data-target="#agregarEmpresa" data-whatever="@mdo">Agregar Persona</button>
             </div>
           </div>
           <div class="row mt-4">

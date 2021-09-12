@@ -72,6 +72,42 @@ class Person {
 
     }
 
+    public function getPersonDocument($document_number) {
+        $sql="SELECT * FROM person where document_number ='$document_number'";
+        //echo $sql. "---";
+        $consulta = array();
+        try {
+            if (isset($this)) {
+                $consulta = $this->db->getDataSingle($sql);
+            }
+        } catch (Exception $e) {
+            print $e;
+        }
+        if($consulta){
+            return $consulta;
+        }
+        return [];
+
+    }
+
+    public function getPersonEmail($email) {
+        $sql="SELECT * FROM person where  email = '$email'";
+        //echo $sql. "---";
+        $consulta = array();
+        try {
+            if (isset($this)) {
+                $consulta = $this->db->getDataSingle($sql);
+            }
+        } catch (Exception $e) {
+            print $e;
+        }
+        if($consulta){
+            return $consulta;
+        }
+        return [];
+
+    }
+
     public function postCreatePerson(PersonDTO $person) {
         //INSERT INTO `person` (`id`, `name`, `last_name`, `email`, `document_number`, `phone_number`, `id_document_type`,
         // `position`, `column_9`, `company_name`, `id_person_type`, `total`)
@@ -156,18 +192,32 @@ class Person {
         $invitado = $person->getInvitado();
         $centro = $person->getCentro();
         $codigo_estudiante = $person->getCodigoEstudiante();
-        $findPerson = [];
-        if($old_document !=$document || $old_email != $email) {
-            $findPerson = $this->getPersonDocumentNumber($document, $email);
-        } 
+        $canUpdate = true;
         
-        if(count($findPerson) == 0){
+        if($old_document !=$document) {
+            $findPerson = [];
+            $findPerson = $this->getPersonDocument($document);
+            if(count($findPerson) > 0){
+                $canUpdate = false;
+            }
+        } 
+
+        if($canUpdate && $old_email != $email) {
+            $findPerson = [];
+            $findPerson = $this->getPersonEmail($email);
+            if(count($findPerson) > 0){
+                $canUpdate = false;
+            }
+            
+        }
+        
+        if($canUpdate){
             $sql = "UPDATE person t SET t.last_name = '$last_name', t.email = '$email', 
             t.name ='$name', t.document_number= '$document', t.phone_number='$phone', t.city='$city',
              t.position='$position', t.company_name ='$company_name',t.guest='$invitado', t.centro='$centro',
               t.codigo_estudiante = '$codigo_estudiante' WHERE t.id = '$id'";
 
-            
+//echo json_encode($sql);
             try {
                 $this->db->executeInstruction($sql);
                 return ["error" => "false", "message"=>"Se registro exitoso!"];

@@ -1,13 +1,14 @@
 <?php
-require_once __DIR__ . "/../../conf/monolog.php";
+//require_once __DIR__ . "/../../conf/monolog.php";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     require_once __DIR__ . "/../../controllers/exel_export.php";
     $excel = new ExcelExport();
     try {
         $excel->exportCompany();
     } catch (Exception $e) {
-        $log = new Monolog();
-        $log->Logger($e->getMessage(), 'error');
+       // $log = new Monolog();
+      //  $log->Logger($e->getMessage(), 'error');
+      echo "error excel";
     }
 }
 ?>

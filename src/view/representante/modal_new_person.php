@@ -2,8 +2,8 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header bg-light">
-        <h5 class="modal-title" id="create_company">Agregar Persona Natural</h5>
-        <h5 class="modal-title" id="update_company">Editar Persona Natural</h5>
+        <h5 class="modal-title" id="create_company">Agregar Representante</h5>
+        <h5 class="modal-title" id="update_company">Editar Representante</h5>
         <button type="button" class="close close_modal" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -121,7 +121,7 @@
       myModal.hide();
       Swal.fire({
         title: 'Error!',
-        text: resp['message'],
+        text: resp['error'],
         icon: 'error',
         showConfirmButton: false,
         timer: 2500
