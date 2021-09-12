@@ -18,11 +18,6 @@
             <set />
           </value>
         </entry>
-        <entry key="$PROJECT_DIR$/src/controllers/exel_export.php">
-          <value>
-            <set />
-          </value>
-        </entry>
         <entry key="$PROJECT_DIR$/src/css/style2.css">
           <value>
             <set />
@@ -54,6 +49,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/view/empresas/contex.php">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/view/login/index.php">
           <value>
             <set />
           </value>
