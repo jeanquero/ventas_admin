@@ -45,10 +45,11 @@ $table = $person->getPerson($_GET["company"],2);
     </tr>
   </thead>
   <tbody>
-     <?php if(count($table)>0) {?>
-      <script>
+  <script>
                         var people = [];
                       </script>
+     <?php if(count($table)>0) {?>
+      
       <?php foreach ($table as $arr) { 
            ?>   <script>
            people.push(<?php echo json_encode($arr) ?>);

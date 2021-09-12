@@ -12,7 +12,7 @@
 
         <?php require_once __DIR__ . "/../../repository/company.php";
         $company = new Company();
-        $table = $company->getCompany();
+        $table = $company->getPrecio();
 
         ?>
 
@@ -31,15 +31,11 @@
                 <table class="table p-4">
                   <thead class="thead-light">
                     <tr>
-                      <th scope="col">Empresa</th>
-                      <th scope="col">RUC/Equivalente</th>
-                      <th scope="col">Direccion</th>
-                      <th scope="col">Pais</th>
-                      <th scope="col">Rubro</th>
-                      <th scope="col">Contacto Comtable</th>
-                      <th scope="col">Participantes</th>
+                      <th scope="col">Tipo</th>
+                      <th scope="col">Precio Individual</th>
+                      <th scope="col">Precio Corporativo</th>
+                      <th scope="col">Divisa</th>
                       <th scope="col">Estado</th>
-                      <th scope="col">Nombre del Registrador</th>
                       <th scope="col">Accion</th>
                     </tr>
                   </thead>
@@ -81,23 +77,17 @@
                               foreach ($arr as $key => $value) { ?>
 
                             <td><?php
-                                if ($key == "payment") {
-                                  if ($value == "0") {
-                                    echo '<span class="badge badge-danger">Incompleto</span> ';
-                                  } else {
-                                    echo '<span class="badge badge-success">Completo</span> ';
-                                  }
-                                } elseif ($key == "id") {
+                                if ($key == "id") {
                                   echo ' <span><i class="fa fa-pencil-square-o editCompany" id="' . $value . '"  aria-hidden="true"></i></span> <span><i class="fa fa-trash eliminar_empresa" id="' . $value . '_delete_company" aria-hidden="true"></i></span>';
-                                } else if ($key != "id_county") {
+                                } else if ($key == "estado") {
+                                  if ($value == "false") {
+                                    echo '<span class="badge badge-danger">Inactivo</span> ';
+                                  } else {
+                                    echo '<span class="badge badge-success">Activo</span> ';
+                                  }
+                                } else if ($key != "id_document_type") {
                                   echo $value;
-                                  if ($key == "nombre_representante") {
-                                    echo '<span><i class="fa fa-pencil-square-o representante_load"  id="' . $arr["id"] . '_rep" aria-hidden="true"></i></span>';
-                                  }
-
-                                  if ($key == "workers") {
-                                    echo ' <span><i class="fa fa-pencil-square-o workers_load" id="' . $arr["id"] . '_work aria-hidden="true"></i></span>';
-                                  }
+                                  
                                 }
 
                                 ?> </td>
@@ -121,13 +111,7 @@
 
         <script>
           $(document).ready(function() {
-            $(".representante_load").click(function(e) {
-              window.location.href = "./../representante/contex.php?company=" + this.id.split("_")[0];
-            });
-
-            $(".workers_load").click(function(e) {
-              window.location.href = "./../person_empresa/contex.php?company=" + this.id.split("_")[0];
-            });
+            
 
             $('.eliminar_empresa').click(function(e) {
               companyDelete(this.id.split("_")[0], 'delete')
@@ -138,7 +122,6 @@
               $("#update_company").hide();
               $("#create_company").show();
               document.getElementById('id').value = null;
-              document.getElementById('old_document').value = null;
               saveEmpresa[0].reset()
             });
             $('.editCompany').click(function(e) {
@@ -146,15 +129,23 @@
               console.log(company.filter(d => d.id == this.id));
               var update_comapy = company.filter(d => d.id == this.id);
 
-              document.getElementById('name').value = update_comapy[0].name_company;
-              document.getElementById('address').value = update_comapy[0].address;
-              document.getElementById('ruc').value = update_comapy[0].document_number;
-              document.getElementById('participants_number').value = update_comapy[0].workers;
-              document.getElementById('activity').value = update_comapy[0].name_company;
-              document.getElementById('country').value = update_comapy[0].id_county;
-              document.getElementById('billing').value = update_comapy[0].billing;
+              document.getElementById('document_type').value = update_comapy[0].id_document_type;
+              document.getElementById('precio_individual').value = update_comapy[0].precio_individual;
+              document.getElementById('precio_corparativo').value = update_comapy[0].precio_corparativo;
+              document.getElementById('divisa').value = update_comapy[0].divisa;
+
+            
               document.getElementById('id').value = update_comapy[0].id;
-              document.getElementById('old_document').value = update_comapy[0].document_number;
+             
+              if (update_comapy[0].estado == "true") {
+                document.getElementById('estado').checked = true;
+              
+              } else {
+                document.getElementById('estado').checked = false;
+               
+              }
+            
+       
               var myModal = new bootstrap.Modal(document.getElementById("agregarEmpresa"), {});
               myModal.show();
               $("#update_company").show();
@@ -168,7 +159,7 @@
 
           const companyDelete = async (id, action) => {
 
-            const response = await fetch('./../../controllers/company.php', {
+            const response = await fetch('./../../controllers/precios.php', {
               method: 'POST',
               body: new URLSearchParams({
 

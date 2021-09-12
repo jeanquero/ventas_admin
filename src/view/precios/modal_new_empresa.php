@@ -1,7 +1,6 @@
 <?php 
-require_once __DIR__ . "/../../repository/paises.php";
-$pais = new Pais;
-$paises = $pais->getData();
+
+$document_type = $company->getDocumentType();
 ?>
 <div class="modal fade" id="agregarEmpresa" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -16,42 +15,38 @@ $paises = $pais->getData();
       <div class="modal-body">
         <form method="post" id="form-empresa" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
           <div class="form-group">
-            <label for="name" class="col-form-label">Empresa*:</label>
-            <input type="text" class="form-control" id="name" required>
-          </div>
-          <div class="form-group">
-            <label for="ruc" class="col-form-label">RCU o equivalente*:</label>
-            <input type="text" class="form-control" id="ruc" required></input>
-          </div>
-          <div class="form-group">
-            <label for="address" class="col-form-label">Direccion de empresa*:</label>
-            <input type="text" class="form-control" id="address" required></input>
-          </div>
-          <div class="form-group">
-            <label for="activity" class="col-form-label">Rubro o actividad*:</label>
-            <input type="text" class="form-control" id="activity"></input>
-          </div>
-          <div class="form-group">
-            <label for="country" class="col-form-label">Pais*:</label>
-            <select class="form-control" id="country" required>
+            <label for="name" class="col-form-label">Tipo*:</label>
+            <select class="form-control" id="document_type" required>
             <option selected value="null">Seleccione una opción del menu</option>
-                            <?php foreach ($paises as &$value) { ?>
+                            <?php foreach ($document_type as &$value) { ?>
                                 <option value="<?php echo $value["id"] ?>"><?php echo $value["name"] ?></option>
                             <?php  } ?>
 
             </select>
-            <div class="form-group">
-              <label for="billing" class="col-form-label">Conctacto contable/tesoreria/facturaci&oacute;n actividad*:</label>
-              <input type="text" class="form-control" id="billing"></input>
-            </div>
           </div>
-          <input type="hidden" id="id" />
-          <input type="hidden" id="old_document" />
-        
           <div class="form-group">
-            <label for="participants_number" class="col-form-label">Cantidad de participantes*:</label>
-            <input type="number" class="form-control" id="participants_number" require></input>
+            <label for="precio_individual" class="col-form-label">Precio Individual*:</label>
+            <input type="number" class="form-control" id="precio_individual" required></input>
           </div>
+          <div class="form-group">
+            <label for="precio_corparativo" class="col-form-label">Precio Corporativo*:</label>
+            <input type="number" class="form-control" id="precio_corparativo" required></input>
+          </div>
+          <div class="form-group">
+            <label for="divisa" class="col-form-label">Divisa*:</label>
+            <input type="text" class="form-control" id="divisa"></input>
+          </div>
+          <div class="form-group">
+            <input type="checkbox" value="true" id="estado" name="estado">
+            <label class="col-form-label" for="estado">
+            Estado
+            </label>
+          </div>
+
+          
+          <input type="hidden" id="id" />
+        
+          
         </form>
       </div>
       <div class="modal-footer">
@@ -92,19 +87,15 @@ $paises = $pais->getData();
 
     const companyCreate = async () => {
 
-const response = await fetch('./../../controllers/company.php', {
+const response = await fetch('./../../controllers/precios.php', {
     method: 'POST',
     body: new URLSearchParams({
-        'name': document.getElementById('name').value,
-        'address': document.getElementById('address').value,
-        'ruc': document.getElementById('ruc').value,
-        'participants_number': document.getElementById('participants_number').value,
-        'activity': document.getElementById('activity').value,
-        'country': document.getElementById('country').value,
-        'billing': document.getElementById('billing').value,
-        'documentType': '2',
+        'document_type': document.getElementById('document_type').value,
+        'precio_individual': document.getElementById('precio_individual').value,
+        'precio_corparativo': document.getElementById('precio_corparativo').value,
+        'divisa': document.getElementById('divisa').value,
+        'estado': document.getElementById('estado').checked,
         'id': document.getElementById('id').value,
-        'old_document': document.getElementById('old_document').value 
         
       
     })

@@ -12,7 +12,7 @@
 
         <?php require_once __DIR__ . "/../../repository/company.php";
         $company = new Company();
-        $table = $company->getCompany();
+        $table = $company->getCompanyAVEN();
 
         ?>
 

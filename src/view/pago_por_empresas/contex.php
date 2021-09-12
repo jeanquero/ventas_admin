@@ -12,7 +12,7 @@
 
         <?php require_once __DIR__ . "/../../repository/company.php";
         $company = new Company();
-        $table = $company->getCompany();
+        $table = $company->getCompanyPago();
 
         ?>
 
@@ -33,13 +33,15 @@
                     <tr>
                       <th scope="col">Empresa</th>
                       <th scope="col">RUC/Equivalente</th>
-                      <th scope="col">Direccion</th>
-                      <th scope="col">Pais</th>
-                      <th scope="col">Rubro</th>
-                      <th scope="col">Contacto Comtable</th>
-                      <th scope="col">Participantes</th>
+                      <th scope="col">Contacto Contable</th>
+                      <th scope="col">Tipo</th>
+                      <th scope="col">Participante</th>
+                      <th scope="col">Total</th>
+                      <th scope="col">Pago</th>
+                      <th scope="col">Entidad Bancaria</th>
+                      <th scope="col">N° de operacion</th>
+                      <th scope="col">Voucher</th>
                       <th scope="col">Estado</th>
-                      <th scope="col">Nombre del Registrador</th>
                       <th scope="col">Accion</th>
                     </tr>
                   </thead>
@@ -81,19 +83,23 @@
                               foreach ($arr as $key => $value) { ?>
 
                             <td><?php
-                                if ($key == "payment") {
+                            if ($key == "type_payment") {
+                              if ($value == "0") {
+                                echo 'Pago Diferido';
+                              } else {
+                                echo 'Deposito en Cuenta';
+                              }
+                            } else  if ($key == "payment") {
                                   if ($value == "0") {
-                                    echo '<span class="badge badge-danger">Incompleto</span> ';
+                                    echo '<span class="badge badge-danger">En proceso</span> ';
                                   } else {
-                                    echo '<span class="badge badge-success">Completo</span> ';
+                                    echo '<span class="badge badge-success">Pago</span> ';
                                   }
                                 } elseif ($key == "id") {
                                   echo ' <span><i class="fa fa-pencil-square-o editCompany" id="' . $value . '"  aria-hidden="true"></i></span> <span><i class="fa fa-trash eliminar_empresa" id="' . $value . '_delete_company" aria-hidden="true"></i></span>';
                                 } else if ($key != "id_county") {
                                   echo $value;
-                                  if ($key == "nombre_representante") {
-                                    echo '<span><i class="fa fa-pencil-square-o representante_load"  id="' . $arr["id"] . '_rep" aria-hidden="true"></i></span>';
-                                  }
+                                  
 
                                   if ($key == "workers") {
                                     echo ' <span><i class="fa fa-pencil-square-o workers_load" id="' . $arr["id"] . '_work aria-hidden="true"></i></span>';

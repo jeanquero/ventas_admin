@@ -89,11 +89,13 @@ class Person {
         $id_person_type = $person->getIdPersonType();
         $company_name = $person->getCompanyName();
         $invitado = $person->getInvitado();
+        $centro = $person->getCentro();
+        $codigo_estudiante = $person->getCodigoEstudiante();
         $findPerson = $this->getPersonDocumentNumber($document, $email);
        // echo json_encode($findPerson );
         if(count($findPerson) == 0){
-            $sql="INSERT INTO person (name,last_name,email,document_number,phone_number,city,total, id_document_type, position,id_person_type,company_name,guest) 
-                        VALUES('$name','$last_name','$email','$document','$phone','$city','$total','$documentType','$position','$id_person_type','$company_name','$invitado')";
+            $sql="INSERT INTO person (name,last_name,email,document_number,phone_number,city,total, id_document_type, position,id_person_type,company_name,guest,centro, codigo_estudiante) 
+                        VALUES('$name','$last_name','$email','$document','$phone','$city','$total','$documentType','$position','$id_person_type','$company_name','$invitado', '$centro', '$codigo_estudiante')";
             
             try {
                 $this->db->executeInstruction($sql);
@@ -152,6 +154,8 @@ class Person {
         $id_person_type = $person->getIdPersonType();
         $company_name = $person->getCompanyName();
         $invitado = $person->getInvitado();
+        $centro = $person->getCentro();
+        $codigo_estudiante = $person->getCodigoEstudiante();
         $findPerson = [];
         if($old_document !=$document || $old_email != $email) {
             $findPerson = $this->getPersonDocumentNumber($document, $email);
@@ -160,7 +164,8 @@ class Person {
         if(count($findPerson) == 0){
             $sql = "UPDATE person t SET t.last_name = '$last_name', t.email = '$email', 
             t.name ='$name', t.document_number= '$document', t.phone_number='$phone', t.city='$city',
-             t.position='$position', t.company_name ='$company_name',t.guest='$invitado'  WHERE t.id = '$id'";
+             t.position='$position', t.company_name ='$company_name',t.guest='$invitado', t.centro='$centro',
+              t.codigo_estudiante = '$codigo_estudiante' WHERE t.id = '$id'";
 
             
             try {
@@ -215,7 +220,7 @@ class Person {
 
     public function getEstudiante() {
         
-        $sql="SELECT p.name,p.last_name,p.document_number,p.email,p.phone_number,p.city, p.position,p.guest, p.company_name, p.id FROM person p where p.id_person_type = 1";
+        $sql="SELECT p.name,p.last_name,p.document_number,p.email,p.phone_number,p.city, p.centro,p.codigo_estudiante, p.id FROM person p where p.id_person_type = 1";
         
         
         //echo $sql. "---";

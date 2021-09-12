@@ -40,9 +40,8 @@ $table = $person->getEstudiante();
       <th scope="col">Correo</th>
       <th scope="col">Celular</th>
       <th scope="col">Ciudad</th>
-      <th scope="col">Cargo</th>
-      <th scope="col">Invitado</th>
-      <th scope="col">Empresa</th>
+      <th scope="col">Centro de estudios</th>
+      <th scope="col">Código de estudiante</th>
       <th scope="col">Accion</th>
     </tr>
   </thead>
@@ -115,11 +114,12 @@ $table = $person->getEstudiante();
               document.getElementById('phone_number').value = update_comapy[0].phone_number;
               document.getElementById('city').value = update_comapy[0].city;
               
-              document.getElementById('position').value = update_comapy[0].position;
               
               document.getElementById('id').value = update_comapy[0].id;
               document.getElementById('old_document').value = update_comapy[0].document_number;
               document.getElementById('old_email').value = update_comapy[0].email;
+              document.getElementById('codigo_estudiante').value = update_comapy[0].codigo_estudiante;
+              document.getElementById('centro').value = update_comapy[0].centro;
               
               
               

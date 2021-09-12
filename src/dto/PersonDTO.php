@@ -16,6 +16,8 @@ class PersonDTO
     private $total;
     private $position;
     private $invitado;
+    private $codigo_estudiante;
+    private $centro;
 
     /**
      * @return mixed
@@ -242,6 +244,38 @@ class PersonDTO
         $this->invitado = $invitado;
     }
 
+
+    /**
+     * @return mixed
+     */
+    public function getCodigoEstudiante()
+    {
+        return $this->codigo_estudiante;
+    }
+
+    /**
+     * @param mixed $codigo_estudiante
+     */
+    public function setCodigoEstudiante($codigo_estudiante)
+    {
+        $this->codigo_estudiante = $codigo_estudiante;
+    }
+
+/**
+     * @return mixed
+     */
+    public function getCentro()
+    {
+        return $this->centro;
+    }
+
+    /**
+     * @param mixed $centro
+     */
+    public function setCentro($centro)
+    {
+        $this->centro = $centro;
+    }    
 
     
 

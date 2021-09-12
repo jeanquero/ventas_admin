@@ -1,6 +1,6 @@
 <nav id="sidebar" class="">
   <div class="sidebar-header navbar-light bg-dark border-bottom title-header">
-    <h3 class="ml-2 p-2"><a href="../../../index.php" class="text-white">AVEM</a></h3>
+    <h3 class="ml-2 p-2"><a href="./../empresas/contex.php" class="text-white">AVEM</a></h3>
   </div>
   <ul class="list-unstyled components">
     <li>
@@ -12,8 +12,8 @@
         ><i class="fa fa-building" aria-hidden="true"></i> Empresas</a
       >
       <ul class="collapse list-unstyled" id="homeSubmenu">
-        <li><a href="index.php" class="text-info" >Asociados Y colaboradores APA</a></li>
-        <li><a href="#" class="text-info">Empresas AVEM</a></li>
+        <li><a href="./../empresas/contex.php" class="text-info" >Asociados Y colaboradores APA</a></li>
+        <li><a href="./../aven/contex.php" class="text-info">Empresas AVEM</a></li>
       </ul>
     </li>
     <li>
@@ -25,11 +25,22 @@
         ><i class="fa fa-user" aria-hidden="true"></i> Personas</a
       >
       <ul class="collapse list-unstyled" id="homePersonas">
-        <li><a href="./src/view/person/contex.php" class="text-info">Persona Natural</a></li>
-        <li><a href="./src/view/estudiante/contex.php" class="text-info">Estudiante</a></li>
+        <li><a href="./../person/contex.php" class="text-info">Persona Natural</a></li>
+        <li><a href="./../estudiante/contex.php" class="text-info">Estudiante</a></li>
       </ul>
     </li>
   </ul>
+  <div class="sidebar-header navbar-light" style="color: black;">
+    <div class="ml-2 p-2" ><a href="./../precios/contex.php" class="text-info">PPRECIO</a></div>
+  </div>
+ 
+  <div class="sidebar-header navbar-light" style="color: black;">
+    <div class="ml-2 p-2" >PAGOS</div>
+  </div>
+  <ul class="list-unstyled">
+        <li><a href="./../pago_por_empresas/contex.php" class="text-info">Empresas</a></li>
+        <li><a href="./../estudiante/contex.php" class="text-info">Personas</a></li>
+      </ul>
 </nav>
 <script>
  /*   $(document).ready(function(){

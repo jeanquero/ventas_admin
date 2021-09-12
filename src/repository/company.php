@@ -109,6 +109,88 @@ class Company {
         return [];
     }
 
+    public function getCompanyAVEN() {
+        $sql = "Select c.name as name_company, c.document_number, c.address,c2.name as country, c.billing,c.activity,
+
+        (select count(*) from person tr, company_person_rel rel_tr
+         where tr.id= rel_tr.id_person AND rel_tr.id_company= c.id AND tr.id_person_type = 3) as workers,
+        (select count(*) from payment pay WHERE pay.company_id = c.id) as  payment,(select re.name from person re, company_person_rel rel_re
+                                                                                    where re.id= rel_re.id_person AND rel_re.id_company= c.id AND re.id_person_type = 2) as nombre_representante,
+                                                                                     c.id, c.id_county
+ from company c
+          INNER JOIN country c2 on c.id_county = c2.id WHERE c.id_document_type = 1";
+        $consulta = array();
+        try {
+            if (isset($this)) {
+                $consulta = $this->db->getData($sql);
+            }
+        } catch (Exception $e) {
+            print $e;
+        }
+        if($consulta){
+            return $consulta;
+        }
+        return [];
+    }
+
+    public function getCompanyPago() {
+        $sql = "Select c.name as name_company,c.document_number, 
+        (select CONCAT(re.name , ', ' , re.last_name) from person re, company_person_rel rel_re where re.id= rel_re.id_person AND rel_re.id_company= c.id AND re.id_person_type = 2) as nombre_representante,
+         dt.name,c.participants_number, c.total, (select count(*) from payment pay WHERE pay.company_id = c.id) as  type_payment,
+         (select pay2.bank from payment pay2 WHERE pay2.company_id = c.id) as bank,
+         (select pay3.reference from payment pay3 WHERE pay3.company_id = c.id) reference,
+         (select pay4.voucher from payment pay4 WHERE pay4.company_id = c.id) as voucher,
+         (select count(*) from payment pay WHERE pay.company_id = c.id) as  payment,
+        
+                                                                                     c.id
+ from company c
+          INNER JOIN country c2 on c.id_county = c2.id
+          JOIN document_type dt ON dt.id = c.id_document_type  ";
+        $consulta = array();
+        try {
+            if (isset($this)) {
+                $consulta = $this->db->getData($sql);
+            }
+        } catch (Exception $e) {
+            print $e;
+        }
+        if($consulta){
+            return $consulta;
+        }
+        return [];
+    }
+
+    public function getPrecio() {
+        $sql = "SELECT d.name, t.precio_individual, t.precio_corparativo, t.divisa, t.estado, t.id, t.id_document_type
+        FROM pagos t join document_type d on d.id = t.id_document_type";
+        $consulta = array();
+        try {
+            if (isset($this)) {
+                $consulta = $this->db->getData($sql);
+            }
+        } catch (Exception $e) {
+            print $e;
+        }
+        if($consulta){
+            return $consulta;
+        }
+        return [];
+    }
+
+    public function getDocumentType()
+    {
+        $sql="SELECT * FROM document_type";
+        $consulta = [];
+        try {
+            if (isset($this)) {
+                $consulta = $this->db->getData($sql);
+            }
+        } catch (Exception $e) {
+            print $e;
+        }
+        return $consulta;
+    }
+
   
 
 }

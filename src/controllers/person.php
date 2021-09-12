@@ -26,6 +26,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $personaDTO->setCompanyName($_POST['part_empresa']);
         $personaDTO->setInvitado($_POST['invitado']);
         $personaDTO->setPosition($_POST['position']);
+        $personaDTO->setCodigoEstudiante($_POST['codigo_estudiante']);
+        $personaDTO->setCentro($_POST['centro']);
+
+        
         $id = $_POST["id"];
         if (empty($id)) {
         $save = $persona->postCreatePerson($personaDTO);

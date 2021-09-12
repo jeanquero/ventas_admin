@@ -36,9 +36,14 @@
           </div>
 
           <div class="form-group">
-            <label for="position" class="col-form-label">Cargo*:</label>
-            <input type="text" class="form-control" id="position"></input>
-          </div>
+                        <label for="centro" class="col-form-label">Centro de estudios*</label>
+                        <input type="text" class="form-control" id="centro" name="centro" required >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="codigo_estudiante" class="col-form-label">Código de estudiante*</label>
+                        <input type="text" class="form-control" id="codigo_estudiante" name="codigo_estudiante" required>
+                    </div>
           
 
           <input type="hidden" id="id" />
@@ -99,12 +104,13 @@
         'email': document.getElementById('email').value,
         'phone_number': document.getElementById('phone_number').value,
         'city': document.getElementById('city').value,
-        'position':document.getElementById('position').value,
         'documentType': '4',
         'id_person_type': '1',
         'id': document.getElementById('id').value,
         'old_document': document.getElementById('old_document').value,
-        'old_email': document.getElementById('old_email').value
+        'old_email': document.getElementById('old_email').value,
+        'codigo_estudiante': document.getElementById('codigo_estudiante').value,
+        'centro': document.getElementById('centro').value
 
 
       })
