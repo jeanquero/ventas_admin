@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand navbar-dark bg-dark">
+<nav class="navbar navbar-expand navbar-dark bg-dark" id="navbar">
   <button type="button" id="sidebarCollapse" class="btn btn-dark">
     <i class="fa fa-align-justify"></i>
   </button>
@@ -26,3 +26,8 @@
     </ul>-->
   </div>
 </nav>
+<style>
+    #navbar{
+        min-height: 55px;
+    }
+</style>

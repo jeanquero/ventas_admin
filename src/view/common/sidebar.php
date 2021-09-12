@@ -1,5 +1,5 @@
 <nav id="sidebar" class="">
-  <div class="sidebar-header navbar-light bg-dark border-bottom title-header">
+  <div class="sidebar-header navbar-light bg-dark border-bottom title-header" id="sidebar-title">
     <h3 class="ml-2 p-2"><a href="../../../index.php" class="text-white">AVEM</a></h3>
   </div>
   <ul class="list-unstyled components">
@@ -51,5 +51,9 @@ $('#person_re').click(function() {
 <style>
     a:link {
         text-decoration: none !important;
+    }
+    #sidebar-title{
+        max-height: 55px;
+        min-height: 56px;
     }
 </style>

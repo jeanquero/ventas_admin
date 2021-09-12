@@ -31,9 +31,9 @@ $table = $person->getPerson(null,null);
     <h4>Personas Naturales</h4>
     </div>
     <div class="col">
-      <button type="button" class="btn btn-warning float-right" data-toggle="modal" id="open_modal" data-target="#agregarEmpresa" data-whatever="@mdo">Agregar Empresa</button>
+      <button type="button" class="btn btn-warning float-right mt-1 mr-4" data-toggle="modal" id="open_modal" data-target="#agregarEmpresa" data-whatever="@mdo">Agregar Empresa</button>
         <form method="post">
-            <button type="submit" class="btn btn-success float-right mr-4">Exportar excel</button>
+            <button type="submit" class="btn btn-success float-right mr-4 mt-1">Exportar excel</button>
         </form>
     </div>
   </div>
@@ -41,7 +41,7 @@ $table = $person->getPerson(null,null);
   <div class="col-12 col-12">
     <div class="card p-4">
   
-  <table class="table p-4">
+  <table class="table p-4 table-responsive">
       <thead class="thead-light">
     <tr>
       <th scope="col">Nombre</th>
