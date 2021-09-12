@@ -2,7 +2,7 @@
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if($_POST['email'] == "avem@gmail.com" && $_POST['password'] == "avem2021@*"){
         echo "<script language='javascript'> 
-                   window.location.replace('http://ventas_admin.test/');
+        window.location.href='./../empresas/contex.php';
                    localStorage.setItem('login', 'true');
               </script>";
     }else{
