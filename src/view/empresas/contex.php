@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . "/../../conf/monolog.php";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    require_once __DIR__ . "/../../controllers/exel_export.php";
+    require_once __DIR__ . "/../controllers/exel_export.php";
     $excel = new ExcelExport();
     try {
         $excel->exportCompany();
@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<link href="./../../css/style2.css" rel="stylesheet" />
+<link href="./../../src/css/style2.css" rel="stylesheet" />
 <?php require_once __DIR__ . "/../common/header2.php" ?>
 
 <body>

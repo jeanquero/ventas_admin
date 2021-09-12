@@ -4,7 +4,7 @@ class MysqlDB
     private $host = "localhost:3307";
     private $usuario ="root";
     private $pass ="root";
-    private $db ="ventas4";
+    private $db ="ventas3";
 
 
 
