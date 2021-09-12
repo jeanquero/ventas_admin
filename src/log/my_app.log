@@ -1,0 +1,5 @@
+[2021-09-11T23:26:44.206984+00:00] my_logger.INFO: Se crea excel empresa [] []
+[2021-09-11T23:32:16.561859+00:00] my_logger.INFO: Se crea excel [] []
+[2021-09-12T03:34:13.856926+00:00] my_logger.ERROR: Cell coordinate string can not be a range of cells [] []
+[2021-09-12T03:34:16.912288+00:00] my_logger.ERROR: Cell coordinate string can not be a range of cells [] []
+[2021-09-12T03:34:22.527400+00:00] my_logger.ERROR: Cell coordinate string can not be a range of cells [] []
