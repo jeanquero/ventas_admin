@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PhpEntryPointsManager">
+    <entry_point>
+      <entry_point TYPE="phpMethod" FQNAME="\ExcelExport exportPerson" />
+      <entry_point TYPE="phpClass" FQNAME="\ExcelExport" />
+      <entry_point TYPE="phpMethod" FQNAME="\ExcelExport __construct" />
+    </entry_point>
+    <pattern value="\ExcelExport" member="exportPerson" />
+    <pattern value="\ExcelExport" />
+    <pattern value="\ExcelExport" member="__construct" />
+  </component>
+</project>

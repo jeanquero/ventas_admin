@@ -11,7 +11,6 @@ Class MonoLog {
     {
         // Create the logger
         $this->logger = new Logger('my_logger');
-// Now add some handlers
         $this->logger->pushHandler(new StreamHandler(__DIR__.'/../log/my_app.log', Logger::DEBUG));
         $this->logger->pushHandler(new FirePHPHandler());
     }
