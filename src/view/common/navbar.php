@@ -14,16 +14,14 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
-   <!-- <ul class="navbar-nav ml-auto">
+    <ul class="navbar-nav ml-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#"
-          >Home <span class="sr-only">(current)</span></a
+        <a class="nav-link"
+           id="logout"
+          >Logout <span class="sr-only">(current)</span></a
         >
       </li>
-      <li class="nav-item"><a class="nav-link" href="#">Features</a></li>
-      <li class="nav-item"><a class="nav-link" href="#">Pricing</a></li>
-      <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-    </ul>-->
+    </ul>
   </div>
 </nav>
 <style>
@@ -31,3 +29,19 @@
         min-height: 55px;
     }
 </style>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    document.getElementById('logout').addEventListener('click',()=>{
+        Swal.fire({
+            title: 'Esta seguro que desea cerrar sesión?',
+            showCancelButton: true,
+            confirmButtonText: 'Continuar',
+        }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+                localStorage.clear();
+                window.location.replace('http://ventas_admin.test/src/view/login');
+            }
+        })
+    })
+</script>
