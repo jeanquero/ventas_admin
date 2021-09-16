@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<link href="./../../src/css/style2.css" rel="stylesheet" />
+<link href="./../../css/style2.css" rel="stylesheet" />
 <?php require_once __DIR__ . "/../common/header2.php" ?>
 
 <body>
