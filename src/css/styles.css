@@ -35,7 +35,7 @@
   --bs-gray-900: #212529;
   --bs-primary: #0d6efd;
   --bs-secondary: #6c757d;
-  --bs-success: #198754;
+  --bs-success: #5F9344;
   --bs-info: #0dcaf0;
   --bs-warning: #ffc107;
   --bs-danger: #dc3545;
@@ -11690,4 +11690,15 @@ body {
 .title-header{
   margin: 25% !important;
   min-height: 1000px;
+}
+
+.btn-datatable {
+  height: 20px !important;
+  width: 20px !important;
+  font-size: 0.75rem;
+  border-radius: 0.25rem !important;
+}
+
+.btn-success-p {
+  background-color: red;
 }

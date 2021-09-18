@@ -2,7 +2,7 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background: #fafafa
+    background: #fafafa;
 }
 
 p {
@@ -83,7 +83,7 @@ a:focus {
     font-size: 1.1em;
     display: block
 }
-/* 
+/*
 #sidebar ul li a:hover {
     color: #fff;
     background: #318fb5
@@ -159,4 +159,14 @@ a.download:hover {
 
 a:link {
     text-decoration: none !important;
+}
+
+.btn-success {
+    background-color: #5F9344 !important;
+}
+.btn-warning {
+    background-color: #FBB915 !important;
+}
+.tbl-height {
+    height: 59px
 }

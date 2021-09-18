@@ -13,10 +13,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
-<link href="./../../css/style2.css" rel="stylesheet" />
+<html lang="es">
 <?php require_once __DIR__ . "/../common/header2.php" ?>
-
+<link href="./../../css/style2.css" rel="stylesheet" />
 <body>
   <div class="wrapper">
     <?php require_once __DIR__ . "/../common/sidebar.php" ?>
@@ -40,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <button type="button" class="btn btn-warning float-right" data-toggle="modal" id="open_modal" data-target="#agregarEmpresa" data-whatever="@mdo">Agregar Empresa</button>
                 </span>
                 <form method="post">
-                    <button type="submit" class="btn btn-success float-right mr-4">Exportar excel</button>
+                    <button type="submit" class="btn float-right mr-4 btn-success-p" style="background-color: #5F9344 !important;">Exportar excel</button>
                 </form>
             </div>
           </div>
@@ -48,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="col-12 col-12">
               <div class="card p-4">
                 <table class="table table-responsive p-4">
-                  <thead class="thead-light">
+                  <thead class="" style="background-color: #F3F7F9">
                     <tr>
                       <th scope="col">Empresa</th>
                       <th scope="col">RUC/Equivalente</th>
@@ -72,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <script>
                           company.push(<?php echo json_encode($arr) ?>);
                         </script>
-                        <tr> <?php
+                        <tr style="height: 59px"> <?php
                               foreach ($arr as $key => $value) { ?>
 
                             <td><?php

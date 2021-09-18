@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand navbar-dark bg-dark" id="navbar">
-  <button type="button" id="sidebarCollapse" class="btn btn-dark">
-    <i class="fa fa-align-justify"></i>
+<nav class="navbar navbar-expand navbar-dark id="navbar" style="background-color: #38414A; min-height: 90px; max-height: 90px">
+  <button type="button" id="sidebarCollapse" class="btn" STYLE="background-color: #38414A;">
+    <i class="fa fa-align-justify" style="background-color: white"></i>
   </button>
   <button
     class="navbar-toggler"

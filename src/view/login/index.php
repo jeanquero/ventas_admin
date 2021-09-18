@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../assets/css/login.css">
+    <link rel="stylesheet" href="../../assets/css/login.css" >
 </head>
 <body>
 <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <div class="brand-wrapper">
                             <img src="https://firebasestorage.googleapis.com/v0/b/hosting-2cadf.appspot.com/o/avem.png?alt=media&token=3494d193-0ea4-45d7-a263-8560b16efe9a" alt="logo" class="logo">
                         </div>
-                        <p class="login-card-description">Sign into your account</p>
+                        <p class="login-card-description">Iniciar sesión en su cuenta</p>
                         <form name="form-login" id="form-login" method="post">
                             <div class="form-group">
                                 <label for="email" class="sr-only">Email</label>

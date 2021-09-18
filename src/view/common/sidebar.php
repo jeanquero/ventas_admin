@@ -1,7 +1,6 @@
 <nav id="sidebar" class="">
-  <div class="sidebar-header navbar-light bg-dark border-bottom title-header" id="sidebar-title">
-    <h3 class="ml-2 p-2"><a href="./../empresas/contex.php" class="text-white">AVEM</a></h3>
-
+  <div class="sidebar-header navbar-light border-bottom title-header" id="sidebar-title" style="background-color: #38414A; min-height: 90px; max-height: 90px">
+      <span> <img src="../../../src/assets/img/logo.png"></span>
   </div>
   <ul class="list-unstyled components">
     <li>
@@ -34,7 +33,7 @@
   <div class="sidebar-header navbar-light" style="color: black;">
     <div class="ml-2 p-2" ><a href="./../precios/contex.php" class="text-info">PPRECIO</a></div>
   </div>
- 
+
   <div class="sidebar-header navbar-light" style="color: black;">
     <div class="ml-2 p-2" >PAGOS</div>
   </div>

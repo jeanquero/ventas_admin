@@ -40,20 +40,20 @@ $table = $person->getPerson(null,null);
 <div class="row mt-4">
   <div class="col-12 col-12">
     <div class="card p-4">
-  
-  <table class="table p-4 table-responsive">
-      <thead class="thead-light">
-    <tr>
-      <th scope="col">Nombre</th>
-      <th scope="col">Apellido</th>
+
+  <table class="table p-4 table-responsive w-100" style="min-width: 100%">
+      <thead  class="table-thead" style="background-color: #F3F7F9" >
+    <tr class="w-100">
+      <th scope="col" class="w-50">Nombre</th>
+      <th scope="col" class="w-50">Apellido</th>
       <th scope="col">Doc. Identidad</th>
       <th scope="col">Correo</th>
       <th scope="col">Celular</th>
       <th scope="col">Ciudad</th>
       <th scope="col">Cargo</th>
       <th scope="col">Invitado</th>
-      <th scope="col">Empresa</th>
-      <th scope="col">Accion</th>
+      <th scope="col" class="w-100">Empresa</th>
+      <th scope="col" class="w-100">Acción</th>
     </tr>
   </thead>
   <tbody>
@@ -61,13 +61,13 @@ $table = $person->getPerson(null,null);
       <script>
                         var people = [];
                       </script>
-      <?php foreach ($table as $arr) { 
+      <?php foreach ($table as $arr) {
            ?>   <script>
            people.push(<?php echo json_encode($arr) ?>);
-         </script>   <tr>
-         <?php foreach($arr as $key => $value){?> 
-          
-           <td><?php 
+         </script>   <tr class="tbl-height" style="">
+         <?php foreach($arr as $key => $value){?>
+
+           <td><?php
             if ($key == "id") {
               echo ' <span><i class="fa fa-pencil-square-o editCompany" id="'.$value.'"  aria-hidden="true"></i></span> <span><i class="fa fa-trash deletePerson" id="'.$value.'_delete" aria-hidden="true"></i></span>';
             }else if($key == "guest") {
@@ -77,10 +77,10 @@ $table = $person->getPerson(null,null);
                 echo "No";
               }
             }else {
-              echo $value; 
+              echo $value;
             }
-            
-            ?> </td><?php }?> 
+
+            ?> </td><?php }?>
 
 
 <?php }?> </tr>
@@ -110,9 +110,9 @@ $table = $person->getPerson(null,null);
             });
             $('.deletePerson').click(function(e) {
               personDelete(this.id,'delete')
-              
+
             })
-            
+
             $('.editCompany').click(function(e) {
 
               console.log(people.filter(d => d.id == this.id));
@@ -125,13 +125,13 @@ $table = $person->getPerson(null,null);
               document.getElementById('phone_number').value = update_comapy[0].phone_number;
               document.getElementById('city').value = update_comapy[0].city;
               document.getElementById('part_empresa').value = update_comapy[0].company_name;
-              
+
               document.getElementById('position').value = update_comapy[0].position;
-              
+
               document.getElementById('id').value = update_comapy[0].id;
               document.getElementById('old_document').value = update_comapy[0].document_number;
               document.getElementById('old_email').value = update_comapy[0].email;
-              
+
               if(update_comapy[0].guest == "true"){
                 document.getElementById('part_invitado').checked = true;
                 $("#part_empresa").show();
@@ -141,9 +141,9 @@ $table = $person->getPerson(null,null);
                 $("#part_empresa").hide();
                 $("#part_empresa_label").hide();
               }
-              
-        
-        
+
+
+
               var myModal = new bootstrap.Modal(document.getElementById("agregarEmpresa"), {});
               myModal.show();
               $("#update_company").show();
@@ -160,10 +160,10 @@ $table = $person->getPerson(null,null);
 const response = await fetch('./../../controllers/person.php', {
   method: 'POST',
   body: new URLSearchParams({
-    
+
     'id': id.split("_")[0],
     'action': action
-    
+
 
 
   })
@@ -186,7 +186,7 @@ if (resp && resp['success'] == "false") {
 } else {
   console.log('no hay error', resp);
 
-   location.reload(); 
+   location.reload();
 
    saveEmpresa[0].reset()
   myModal.hide();
