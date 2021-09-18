@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="content-wrapper">
           <div class="row">
             <div class="col">
-              <h4>Empresas</h4>
+              <h4>Asociados y Colaboradores APA.</h4>
             </div>
             <div class="col">
                 <span>

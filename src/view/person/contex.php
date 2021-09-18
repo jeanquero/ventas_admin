@@ -28,7 +28,7 @@ $table = $person->getPerson(null,null);
 <div class="content-wrapper">
 <div class="row">
     <div class="col">
-    <h4>Personas Naturales</h4>
+    <h4>Person Natural</h4>
     </div>
     <div class="col">
       <button type="button" class="btn btn-warning float-right mt-1 mr-4" data-toggle="modal" id="open_modal" data-target="#agregarEmpresa" data-whatever="@mdo">Agregar Empresa</button>
@@ -51,7 +51,7 @@ $table = $person->getPerson(null,null);
       <th scope="col">Celular</th>
       <th scope="col">Ciudad</th>
       <th scope="col">Cargo</th>
-      <th scope="col">Invitado</th>
+      <th scope="col">Otra empresa</th>
       <th scope="col" class="w-100">Empresa</th>
       <th scope="col" class="w-100">Acción</th>
     </tr>
@@ -99,6 +99,7 @@ $table = $person->getPerson(null,null);
 </div>
 
 <script>
+  var myModal = new bootstrap.Modal(document.getElementById("agregarEmpresa"), {});
           $(document).ready(function() {
             $("#open_modal").click(function(e) {
               $("#update_company").hide();
@@ -144,7 +145,7 @@ $table = $person->getPerson(null,null);
 
 
 
-              var myModal = new bootstrap.Modal(document.getElementById("agregarEmpresa"), {});
+              
               myModal.show();
               $("#update_company").show();
               $("#create_company").hide();

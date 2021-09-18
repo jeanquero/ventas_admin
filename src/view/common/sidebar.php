@@ -14,6 +14,7 @@
       <ul class="collapse list-unstyled" id="homeSubmenu">
         <li><a href="./../empresas/contex.php" class="text-info" >Asociados Y colaboradores APA</a></li>
         <li><a href="./../aven/contex.php" class="text-info">Empresas AVEM</a></li>
+        <li><a href="./../regular/contex.php" class="text-info">Regular</a></li>
       </ul>
     </li>
     <li>

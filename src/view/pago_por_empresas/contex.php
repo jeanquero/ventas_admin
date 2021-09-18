@@ -126,6 +126,7 @@
         </div>
 
         <script>
+          var myModal = new bootstrap.Modal(document.getElementById("agregarEmpresa"), {});
           $(document).ready(function() {
             $(".representante_load").click(function(e) {
               window.location.href = "./../representante/contex.php?company=" + this.id.split("_")[0];
@@ -161,7 +162,7 @@
               document.getElementById('billing').value = update_comapy[0].billing;
               document.getElementById('id').value = update_comapy[0].id;
               document.getElementById('old_document').value = update_comapy[0].document_number;
-              var myModal = new bootstrap.Modal(document.getElementById("agregarEmpresa"), {});
+              
               //myModal.show();
               $("#update_company").show();
               $("#create_company").hide();

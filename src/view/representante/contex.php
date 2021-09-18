@@ -81,6 +81,7 @@ $table = $person->getPerson($_GET["company"],2);
 </div>
 
 <script>
+  var myModal = new bootstrap.Modal(document.getElementById("agregarEmpresa"), {});
   if(people.length > 0) {
     $("#open_modal").prop('disabled', true);
   }
@@ -120,7 +121,7 @@ $table = $person->getPerson($_GET["company"],2);
               
         
         
-              var myModal = new bootstrap.Modal(document.getElementById("agregarEmpresa"), {});
+              
               myModal.show();
               $("#update_company").show();
               $("#create_company").hide();

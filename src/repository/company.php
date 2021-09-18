@@ -94,7 +94,7 @@ class Company {
                                                                                     where re.id= rel_re.id_person AND rel_re.id_company= c.id AND re.id_person_type = 2) as nombre_representante,
                                                                                      c.id, c.id_county
  from company c
-          INNER JOIN country c2 on c.id_county = c2.id WHERE c.id_document_type = 2 OR c.id_document_type = 3";
+          INNER JOIN country c2 on c.id_county = c2.id WHERE c.id_document_type = 3";
         $consulta = array();
         try {
             if (isset($this)) {
@@ -118,6 +118,30 @@ class Company {
                                                                                     where re.id= rel_re.id_person AND rel_re.id_company= c.id AND re.id_person_type = 2) as nombre_representante,
                                                                                      c.id, c.id_county
  from company c
+          INNER JOIN country c2 on c.id_county = c2.id WHERE c.id_document_type = 2";
+        $consulta = array();
+        try {
+            if (isset($this)) {
+                $consulta = $this->db->getData($sql);
+            }
+        } catch (Exception $e) {
+            print $e;
+        }
+        if($consulta){
+            return $consulta;
+        }
+        return [];
+    }
+
+    public function getCompanyRegular() {
+        $sql = "Select c.name as name_company, c.document_number, c.address,c2.name as country, c.billing,c.activity,
+
+        (select count(*) from person tr, company_person_rel rel_tr
+         where tr.id= rel_tr.id_person AND rel_tr.id_company= c.id AND tr.id_person_type = 3) as workers,
+        (select count(*) from payment pay WHERE pay.company_id = c.id) as  payment,(select re.name from person re, company_person_rel rel_re
+                                                                                    where re.id= rel_re.id_person AND rel_re.id_company= c.id AND re.id_person_type = 2) as nombre_representante,
+                                                                                     c.id, c.id_county
+ from company c
           INNER JOIN country c2 on c.id_county = c2.id WHERE c.id_document_type = 1";
         $consulta = array();
         try {
@@ -132,6 +156,7 @@ class Company {
         }
         return [];
     }
+
 
     public function getCompanyPago() {
         $sql = "Select c.name as name_company,c.document_number, 

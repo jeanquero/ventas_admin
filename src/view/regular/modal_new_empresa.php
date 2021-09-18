@@ -102,7 +102,7 @@ const response = await fetch('./../../controllers/company.php', {
         'activity': document.getElementById('activity').value,
         'country': document.getElementById('country').value,
         'billing': document.getElementById('billing').value,
-        'documentType': '2',
+        'documentType': '1',
         'id': document.getElementById('id').value,
         'old_document': document.getElementById('old_document').value 
         

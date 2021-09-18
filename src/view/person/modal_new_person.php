@@ -42,7 +42,7 @@
           <div class="form-group">
             <input type="checkbox" value="true" id="part_invitado" name="part_invitado">
             <label class="col-form-label" for="flexCheckDefault">
-              Invitado
+            Otra empresa
             </label>
           </div>
           <div class="form-group">

@@ -22,7 +22,7 @@
         <div class="content-wrapper">
           <div class="row">
             <div class="col">
-              <h4>Personas Naturales</h4>
+              <h4>Persona Natural</h4>
             </div>
             <div class="col">
               <button type="button" class="btn btn-warning float-right" data-toggle="modal" id="open_modal" data-target="#agregarEmpresa" data-whatever="@mdo">Agregar Persona</button>
@@ -42,7 +42,7 @@
                       <th scope="col">Celular</th>
                       <th scope="col">Ciudad</th>
                       <th scope="col">Cargo</th>
-                      <th scope="col">Invitado</th>
+                      <th scope="col">Otra empresa</th>
                       <th scope="col">Empresa</th>
                       <th scope="col">Accion</th>
                     </tr>
@@ -92,6 +92,8 @@
         </div>
 
         <script>
+          var myModal = new bootstrap.Modal(document.getElementById("agregarEmpresa"), {});
+              
           $(document).ready(function() {
             $("#open_modal").click(function(e) {
               $("#update_company").hide();
@@ -137,7 +139,6 @@
 
 
 
-              var myModal = new bootstrap.Modal(document.getElementById("agregarEmpresa"), {});
               myModal.show();
               $("#update_company").show();
               $("#create_company").hide();

@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="content-wrapper">
           <div class="row">
             <div class="col">
-              <h4>Empresas</h4>
+              <h4>Empresas AVEM.</h4>
             </div>
             <div class="col">
               <button type="button" class="btn btn-warning float-right" data-toggle="modal" id="open_modal" data-target="#agregarEmpresa" data-whatever="@mdo">Agregar Empresa</button>

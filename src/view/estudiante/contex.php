@@ -35,7 +35,7 @@ $table = $person->getEstudiante();
 <div class="content-wrapper">
 <div class="row">
     <div class="col">
-    <h4>Estudiante</h4>
+    <h4>Estudiantes.</h4>
     </div>
     <div class="col">
       <button type="button" class="btn btn-warning float-right" data-toggle="modal" id="open_modal" data-target="#agregarEmpresa" data-whatever="@mdo">Agregar Estudiante</button>
@@ -105,6 +105,7 @@ $table = $person->getEstudiante();
 </div>
 
 <script>
+  var myModal = new bootstrap.Modal(document.getElementById("agregarEmpresa"), {});
           $(document).ready(function() {
             $("#open_modal").click(function(e) {
               $("#update_company").hide();
@@ -142,7 +143,7 @@ $table = $person->getEstudiante();
               
         
         
-              var myModal = new bootstrap.Modal(document.getElementById("agregarEmpresa"), {});
+              
               myModal.show();
               $("#update_company").show();
               $("#create_company").hide();

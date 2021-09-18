@@ -1,8 +1,21 @@
+<?php
+require_once __DIR__ . "/../../conf/monolog.php";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    require_once __DIR__ . "/../controllers/exel_export.php";
+    $excel = new ExcelExport();
+    try {
+        $excel->exportCompanyRegular();
+    } catch (Exception $e) {
+       // $log = new Monolog();
+      //  $log->Logger($e->getMessage(), 'error');
+      echo "error excel";
+    }
+}
+?>
 <!DOCTYPE html>
-<html lang="en">
-<link href="./../../css/style2.css" rel="stylesheet" />
+<html lang="es">
 <?php require_once __DIR__ . "/../common/header2.php" ?>
-
+<link href="./../../css/style2.css" rel="stylesheet" />
 <body>
   <div class="wrapper">
     <?php require_once __DIR__ . "/../common/sidebar.php" ?>
@@ -12,65 +25,43 @@
 
         <?php require_once __DIR__ . "/../../repository/company.php";
         $company = new Company();
-        $table = $company->getPeoplePago();
+        $table = $company->getCompanyRegular();
 
         ?>
 
         <div class="content-wrapper">
           <div class="row">
             <div class="col">
-              <h4>Pagos</h4>
+              <h4>Regular.</h4>
             </div>
             <div class="col">
-             <!-- <button type="button" class="btn btn-warning float-right" data-toggle="modal" id="open_modal" data-target="#agregarEmpresa" data-whatever="@mdo">Agregar Pago</button>-->
+                <span>
+                    <button type="button" class="btn btn-warning float-right" data-toggle="modal" id="open_modal" data-target="#agregarEmpresa" data-whatever="@mdo">Agregar Empresa</button>
+                </span>
+                <form method="post">
+                    <button type="submit" class="btn float-right mr-4 btn-success-p" style="background-color: #5F9344 !important;">Exportar excel</button>
+                </form>
             </div>
           </div>
           <div class="row mt-4">
             <div class="col-12 col-12">
               <div class="card p-4">
-                <table class="table p-4">
-                  <thead class="thead-light">
+                <table class="table table-responsive p-4">
+                  <thead class="" style="background-color: #F3F7F9">
                     <tr>
-                      <th scope="col">Persona</th>
-                      <th scope="col">Nombre</th>
-                      <th scope="col">Apellidos</th>
-                      <th scope="col">Doc. de identidad</th>
-                      <th scope="col">Correo</th>
-                      <th scope="col">Centro de Estudio</th>
-                      <th scope="col">Total</th>
-                      <th scope="col">Pago</th>
-                      <th scope="col">Entidad Bancaria</th>
-                      <th scope="col">N° de operacion</th>
-                      <th scope="col">Voucher</th>
+                      <th scope="col">Empresa</th>
+                      <th scope="col">RUC/Equivalente</th>
+                      <th scope="col">Dirección</th>
+                      <th scope="col">Pais</th>
+                      <th scope="col">Rubro</th>
+                      <th scope="col">Contacto Contable</th>
+                      <th scope="col">Participantes</th>
                       <th scope="col">Estado</th>
-                      <th scope="col">Accion</th>
+                      <th scope="col">Nombre del Registrador</th>
+                      <th scope="col">Acción</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <!--  <tr>
-        <td> Prueba </td>
-        <td> 551554221  </td>
-        <td> Lima, Peru</td>
-        <td> Peru  </td>
-        <td> Banca </td>
-        <td> 55598885 </td>
-        <td> 10 </td>
-        <td> <span class="badge badge-danger">Incompleto</span> </td>
-        <td> Jean </td>
-        <td> <span><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span> <span><i class="fa fa-trash" aria-hidden="true"></i></span>  </td>
-      </tr>
-      <tr>
-        <td> Prueba </td>
-        <td> 551554221  </td>
-        <td> Lima, Peru</td>
-        <td> Peru  </td>
-        <td> Banca </td>
-        <td> 55598885 </td>
-        <td> 10 </td>
-        <td> <span class="badge badge-success">Completo</span> </td>
-        <td> Jean </td>
-        <td> <span><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span> <span><i class="fa fa-trash" aria-hidden="true"></i></span>  </td>
-      </tr>-->
                     <?php if (count($table) > 0) { ?>
                       <script>
                         var company = [];
@@ -80,27 +71,23 @@
                         <script>
                           company.push(<?php echo json_encode($arr) ?>);
                         </script>
-                        <tr> <?php
+                        <tr style="height: 59px"> <?php
                               foreach ($arr as $key => $value) { ?>
 
                             <td><?php
-                            if ($key == "type_payment") {
-                              if ($value == "0") {
-                                echo 'Pago Diferido';
-                              } else {
-                                echo 'Deposito en Cuenta';
-                              }
-                            } else  if ($key == "payment") {
+                                if ($key == "payment") {
                                   if ($value == "0") {
-                                    echo '<span class="badge badge-danger">En proceso</span> ';
+                                    echo '<span class="badge badge-danger">Incompleto</span> ';
                                   } else {
-                                    echo '<span class="badge badge-success">Pago</span> ';
+                                    echo '<span class="badge badge-success">Completo</span> ';
                                   }
                                 } elseif ($key == "id") {
-                                 // echo ' <span><i class="fa fa-pencil-square-o editCompany" id="' . $value . '"  aria-hidden="true"></i></span> <span><i class="fa fa-trash eliminar_empresa" id="' . $value . '_delete_company" aria-hidden="true"></i></span>';
+                                  echo ' <span><i class="fa fa-pencil-square-o editCompany" id="' . $value . '"  aria-hidden="true"></i></span> <span><i class="fa fa-trash eliminar_empresa" id="' . $value . '_delete_company" aria-hidden="true"></i></span>';
                                 } else if ($key != "id_county") {
                                   echo $value;
-                                  
+                                  if ($key == "nombre_representante") {
+                                    echo '<span><i class="fa fa-pencil-square-o representante_load"  id="' . $arr["id"] . '_rep" aria-hidden="true"></i></span>';
+                                  }
 
                                   if ($key == "workers") {
                                     echo ' <span><i class="fa fa-pencil-square-o workers_load" id="' . $arr["id"] . '_work aria-hidden="true"></i></span>';
@@ -127,7 +114,6 @@
         </div>
 
         <script>
-           var myModal = new bootstrap.Modal(document.getElementById("agregarEmpresa"), {});
           $(document).ready(function() {
             $(".representante_load").click(function(e) {
               window.location.href = "./../representante/contex.php?company=" + this.id.split("_")[0];
@@ -163,7 +149,7 @@
               document.getElementById('billing').value = update_comapy[0].billing;
               document.getElementById('id').value = update_comapy[0].id;
               document.getElementById('old_document').value = update_comapy[0].document_number;
-             
+              var myModal = new bootstrap.Modal(document.getElementById("agregarEmpresa"), {});
               myModal.show();
               $("#update_company").show();
               $("#create_company").hide();
