@@ -49,6 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <table class="table table-responsive p-4">
                   <thead class="" style="background-color: #F3F7F9">
                     <tr>
+                    <th scope="col">Numero de Identificacion</th>
                       <th scope="col">Empresa</th>
                       <th scope="col">RUC/Equivalente</th>
                       <th scope="col">Dirección</th>

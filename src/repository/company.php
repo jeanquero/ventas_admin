@@ -86,7 +86,7 @@ class Company {
     }
 
     public function getCompany() {
-        $sql = "Select c.name as name_company, c.document_number, c.address,c2.name as country, c.billing,c.activity,
+        $sql = "Select c.id numero_identificacion, c.name as name_company, c.document_number, c.address,c2.name as country, c.billing,c.activity,
 
         (select count(*) from person tr, company_person_rel rel_tr
          where tr.id= rel_tr.id_person AND rel_tr.id_company= c.id AND tr.id_person_type = 3) as workers,
@@ -110,7 +110,7 @@ class Company {
     }
 
     public function getCompanyAVEN() {
-        $sql = "Select c.name as name_company, c.document_number, c.address,c2.name as country, c.billing,c.activity,
+        $sql = "Select c.id numero_identificacion, c.name as name_company, c.document_number, c.address,c2.name as country, c.billing,c.activity,
 
         (select count(*) from person tr, company_person_rel rel_tr
          where tr.id= rel_tr.id_person AND rel_tr.id_company= c.id AND tr.id_person_type = 3) as workers,
@@ -134,7 +134,7 @@ class Company {
     }
 
     public function getCompanyRegular() {
-        $sql = "Select c.name as name_company, c.document_number, c.address,c2.name as country, c.billing,c.activity,
+        $sql = "Select c.id numero_identificacion, c.name as name_company, c.document_number, c.address,c2.name as country, c.billing,c.activity,
 
         (select count(*) from person tr, company_person_rel rel_tr
          where tr.id= rel_tr.id_person AND rel_tr.id_company= c.id AND tr.id_person_type = 3) as workers,
