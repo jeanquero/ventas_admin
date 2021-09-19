@@ -13,8 +13,8 @@ $path = getcwd();
         href="#homeSubmenu"
         data-toggle="collapse"
         aria-expanded="false"
-        class="dropdown-toggle text-success"
-        ><i class="fa fa-building" aria-hidden="true"></i> Empresas</a
+        class="text-success"
+        ><i class="fa fa-building" aria-hidden="true"></i> Empresas  <span class="badge rounded-pill bg-success float-end mt-1">80</span></a
       >
       <ul class="collapse list-unstyled" id="homeSubmenu">
         <li><a href="./../empresas/contex.php" class="color-submenu" >Asociados Y colaboradores APA</a></li>
@@ -27,8 +27,8 @@ $path = getcwd();
         href="#homePersonas"
         data-toggle="collapse"
         aria-expanded="false"
-        class="dropdown-toggle text-warning"
-        ><i class="fa fa-user" aria-hidden="true"></i> Personas</a
+        class="text-warning"
+        ><i class="fa fa-user" aria-hidden="true"></i> Personas <span class="badge rounded-pill bg-warning float-end mt-1">150</span></a
       >
       <ul class="collapse list-unstyled" id="homePersonas">
         <li><a href="./../person/contex.php" class="color-submenu">Persona Natural</a></li>
