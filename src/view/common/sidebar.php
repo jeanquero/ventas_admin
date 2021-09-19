@@ -3,7 +3,7 @@ $path = getcwd();
 ?>
 
 <nav id="sidebar" class="">
-  <div class="sidebar-header navbar-light border-bottom title-header" id="sidebar-title" style="background-color: #38414A; min-height: 90px; max-height: 90px">
+  <div class="sidebar-header navbar-light border-bottom title-header" id="sidebar-title" style="background-color: #38414A; min-height: 91px; max-height: 91px">
       <span> <img src="../../../src/assets/img/logo.png"></span>
   </div>
     <h6 class="color-activo p-2 mt-2">REGISTROS</h6>
