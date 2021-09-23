@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="content-wrapper">
           <div class="row">
             <div class="col">
-              <h4>Regular.</h4>
+              <h4>Regular</h4>
             </div>
             <div class="col">
                 <span>

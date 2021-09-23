@@ -20,11 +20,11 @@ $paises = $pais->getData();
             <input type="text" class="form-control" id="name" required>
           </div>
           <div class="form-group">
-            <label for="ruc" class="col-form-label">RCU o equivalente*:</label>
+            <label for="ruc" class="col-form-label">RUC y Equivalente*:</label>
             <input type="text" class="form-control" id="ruc" required></input>
           </div>
           <div class="form-group">
-            <label for="address" class="col-form-label">Direccion de empresa*:</label>
+            <label for="address" class="col-form-label">Direcci&oacute;n de empresa*:</label>
             <input type="text" class="form-control" id="address" required></input>
           </div>
           <div class="form-group">
@@ -32,7 +32,7 @@ $paises = $pais->getData();
             <input type="text" class="form-control" id="activity"></input>
           </div>
           <div class="form-group">
-            <label for="country" class="col-form-label">Pais*:</label>
+            <label for="country" class="col-form-label">Pa&iacute;s*:</label>
             <select class="form-control" id="country" required>
             <option selected value="null">Seleccione una opción del menu</option>
                             <?php foreach ($paises as &$value) { ?>

@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="content-wrapper">
           <div class="row">
             <div class="col">
-              <h4>Empresas AVEM.</h4>
+              <h4>Empresas AVEM</h4>
             </div>
             <div class="col">
               <button type="button" class="btn btn-warning float-right" data-toggle="modal" id="open_modal" data-target="#agregarEmpresa" data-whatever="@mdo">Agregar Empresa</button>
@@ -52,8 +52,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <th scope="col">Numero de Identificacion</th>
                       <th scope="col">Empresa</th>
                       <th scope="col">RUC/Equivalente</th>
-                      <th scope="col">Direccion</th>
-                      <th scope="col">Pais</th>
+                      <th scope="col">Direcci&oacute;n</th>
+                      <th scope="col">Pa&iacute;s</th>
                       <th scope="col">Rubro</th>
                       <th scope="col">Contacto Comtable</th>
                       <th scope="col">Participantes</th>

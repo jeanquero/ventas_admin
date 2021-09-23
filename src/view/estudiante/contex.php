@@ -35,7 +35,7 @@ $table = $person->getEstudiante();
 <div class="content-wrapper">
 <div class="row">
     <div class="col">
-    <h4>Estudiantes.</h4>
+    <h4>Estudiantes</h4>
     </div>
     <div class="col">
       <button type="button" class="btn btn-warning float-right" data-toggle="modal" id="open_modal" data-target="#agregarEmpresa" data-whatever="@mdo">Agregar Estudiante</button>

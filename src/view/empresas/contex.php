@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . "/../../conf/monolog.php";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    require_once __DIR__ . "/../controllers/exel_export.php";
+  require_once __DIR__ . "/../../controllers/exel_export.php";
     $excel = new ExcelExport();
     try {
         $excel->exportCompany();
@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="content-wrapper">
           <div class="row">
             <div class="col">
-              <h4>Asociados y Colaboradores APA.</h4>
+              <h4>Asociados y Colaboradores APA</h4>
             </div>
             <div class="col">
                 <span>
@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                       <th scope="col">Empresa</th>
                       <th scope="col">RUC/Equivalente</th>
                       <th scope="col">Dirección</th>
-                      <th scope="col">Pais</th>
+                      <th scope="col">Pa&iacute;s</th>
                       <th scope="col">Rubro</th>
                       <th scope="col">Contacto Contable</th>
                       <th scope="col">Participantes</th>

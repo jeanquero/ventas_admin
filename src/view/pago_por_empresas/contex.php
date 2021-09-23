@@ -1,3 +1,17 @@
+<?php
+require_once __DIR__ . "/../../conf/monolog.php";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  require_once __DIR__ . "/../../controllers/exel_export.php";
+    $excel = new ExcelExport();
+    try {
+        $excel->exportCompanyRegular();
+    } catch (Exception $e) {
+       // $log = new Monolog();
+      //  $log->Logger($e->getMessage(), 'error');
+      echo "error excel";
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <link href="./../../css/style2.css" rel="stylesheet" />
@@ -104,6 +118,9 @@
                                   if ($key == "workers") {
                                     echo ' <span><i class="fa fa-pencil-square-o workers_load" id="' . $arr["id"] . '_work aria-hidden="true"></i></span>';
                                   }
+                                } if($key == "voucher") {
+                                
+                                  echo '<a  href="https://registroempresas.avemperu.com/uploads/'.$value.'" download><img style="height: 60px;"  src="https://registroempresas.avemperu.com/uploads/'.$value.'" alt="'.$value.'"/></a>';
                                 }
 
                                 ?> </td>

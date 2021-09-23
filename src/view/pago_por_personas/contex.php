@@ -105,6 +105,9 @@
                                   if ($key == "workers") {
                                     echo ' <span><i class="fa fa-pencil-square-o workers_load" id="' . $arr["id"] . '_work aria-hidden="true"></i></span>';
                                   }
+                                } if($key == "voucher") {
+                                
+                                  echo '<a  href="https://registroempresas.avemperu.com/uploads/'.$value.'" download><img style="height: 60px;"  src="https://registroempresas.avemperu.com/uploads/'.$value.'" alt="'.$value.'"/></a>';
                                 }
 
                                 ?> </td>
