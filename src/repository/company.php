@@ -190,14 +190,13 @@ FROM payment pay JOIN company c ON c.id = pay.company_id
 
           $sql="SELECT dt.name as document, p.name,p.last_name,p.document_number,p.email, p.centro,p.total,
           (select count(*) from payment pay WHERE pay.person_id = p.id) as  type_payment,
-          (select pay2.bank from payment pay2 WHERE pay2.person_id = p.id) as bank,
-          (select pay3.reference from payment pay3 WHERE pay3.person_id = p.id) reference,
-          CONCAT('ID', p.id, '-', (select pay4.voucher from payment pay4 WHERE pay4.person_id = p.id))  as voucher,
+          pay.bank ,pay.reference,
+          CONCAT('ID', p.id, '-', pay.voucher)  as voucher,
           (select count(*) from payment pay WHERE pay.person_id = p.id) as  payment,
-           p.id 
-          FROM person p
-          JOIN document_type dt ON dt.id = p.id_document_type 
-           where p.id_person_type = 1";
+                     p.id 
+          FROM payment pay 
+          JOIN person p ON p.id = pay.person_id  JOIN document_type dt ON dt.id = p.id_document_type 
+                     where p.id_person_type = 1 ";
         $consulta = array();
         try {
             if (isset($this)) {
