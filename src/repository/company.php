@@ -86,7 +86,7 @@ class Company {
     }
 
     public function getCompany() {
-        $sql = "Select c.id numero_identificacion, c.name as name_company, c.document_number, c.address,c2.name as country, c.billing,c.activity,
+        $sql = "Select c.id numero_identificacion, c.name as name_company, c.document_number, c.address,c2.name as country, c.activity,c.billing,
 
         (select count(*) from person tr, company_person_rel rel_tr
          where tr.id= rel_tr.id_person AND rel_tr.id_company= c.id AND tr.id_person_type = 3) as workers,
@@ -110,7 +110,7 @@ class Company {
     }
 
     public function getCompanyAVEN() {
-        $sql = "Select c.id numero_identificacion, c.name as name_company, c.document_number, c.address,c2.name as country, c.billing,c.activity,
+        $sql = "Select c.id numero_identificacion, c.name as name_company, c.document_number, c.address,c2.name as country, c.activity,c.billing,
 
         (select count(*) from person tr, company_person_rel rel_tr
          where tr.id= rel_tr.id_person AND rel_tr.id_company= c.id AND tr.id_person_type = 3) as workers,
@@ -134,7 +134,7 @@ class Company {
     }
 
     public function getCompanyRegular() {
-        $sql = "Select c.id numero_identificacion, c.name as name_company, c.document_number, c.address,c2.name as country, c.billing,c.activity,
+        $sql = "Select c.id numero_identificacion, c.name as name_company, c.document_number, c.address,c2.name as country,c.activity, c.billing,
 
         (select count(*) from person tr, company_person_rel rel_tr
          where tr.id= rel_tr.id_person AND rel_tr.id_company= c.id AND tr.id_person_type = 3) as workers,
@@ -159,18 +159,18 @@ class Company {
 
 
     public function getCompanyPago() {
-        $sql = "Select c.name as name_company,c.document_number, 
-        (select CONCAT(re.name , ', ' , re.last_name) from person re, company_person_rel rel_re where re.id= rel_re.id_person AND rel_re.id_company= c.id AND re.id_person_type = 2) as nombre_representante,
-         dt.name,c.participants_number, c.total, (select count(*) from payment pay WHERE pay.company_id = c.id) as  type_payment,
-         (select pay2.bank from payment pay2 WHERE pay2.company_id = c.id) as bank,
-         (select pay3.reference from payment pay3 WHERE pay3.company_id = c.id) reference,
-         (select pay4.voucher from payment pay4 WHERE pay4.company_id = c.id) as voucher,
-         (select count(*) from payment pay WHERE pay.company_id = c.id) as  payment,
+        $sql = "SELECT c.name as name_company,c.document_number, 
+        (select CONCAT(re.name , ', ' , re.last_name) from person re, company_person_rel rel_re where re.id= rel_re.id_person AND rel_re.id_company= c.id AND re.id_person_type = 2 LIMIT 1) as nombre_representante,
+dt.name,c.participants_number, c.total,
+(select count(*) from payment pay WHERE pay.company_id = c.id) as  type_payment,
+pay.bank , pay.reference, 
+         CONCAT('ID', c.id, '-', pay.voucher) as voucher,
+(select count(*) from payment pay WHERE pay.company_id = c.id) as  payment,
         
                                                                                      c.id
- from company c
-          INNER JOIN country c2 on c.id_county = c2.id
-          JOIN document_type dt ON dt.id = c.id_document_type  ";
+FROM payment pay JOIN company c ON c.id = pay.company_id 
+          JOIN country c2 on c.id_county = c2.id
+          JOIN document_type dt ON dt.id = c.id_document_type     ";
         $consulta = array();
         try {
             if (isset($this)) {
@@ -192,7 +192,7 @@ class Company {
           (select count(*) from payment pay WHERE pay.person_id = p.id) as  type_payment,
           (select pay2.bank from payment pay2 WHERE pay2.person_id = p.id) as bank,
           (select pay3.reference from payment pay3 WHERE pay3.person_id = p.id) reference,
-          (select pay4.voucher from payment pay4 WHERE pay4.person_id = p.id) as voucher,
+          CONCAT('ID', p.id, '-', (select pay4.voucher from payment pay4 WHERE pay4.person_id = p.id))  as voucher,
           (select count(*) from payment pay WHERE pay.person_id = p.id) as  payment,
            p.id 
           FROM person p

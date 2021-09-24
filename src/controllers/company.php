@@ -72,6 +72,15 @@ if (empty($_POST['action'])) {
         }
     }
 } else {
-    echo json_encode([ 'error' => '', 'success'=>'true']);
+    $sql = "DELETE FROM company WHERE id = ".$_POST["id"];
+    try {
+        // echo json_encode($sql);
+        $db->executeInstruction($sql);
+        echo json_encode([ 'error' => '', 'success'=>'true']);
+    } catch (Exception $e) {
+        echo json_encode(["error" => "true", "message" => "Error al eliminar la empresa!"]);
+    }
+
+    
 }
 return $_POST;
